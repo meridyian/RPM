@@ -1,55 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.TextCore.Text;
 
-public class PlayerControl : MonoBehaviour
+
+public class PlayerControl : NetworkBehaviour
 {
-    [SerializeField] private float walkSpeed;
-    [SerializeField] private float speedSmoothVelocity = 0f;
-    [SerializeField] private float speedSmoothTime = 0.1f;
+    public Animator characterAnimator;
+    private NetworkCharacterControllerPrototype _cc;
 
-    public float currentSpeed = 0f;
-    private CharacterController charController;
-    private Animator anim;
-    private float targetSpeed = 0f;
-
-    public void Start()
+    private void Awake()
     {
-        charController = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
+        _cc = GetComponent<NetworkCharacterControllerPrototype>();
     }
-
-    public void Update()
+    public override void FixedUpdateNetwork()
     {
-        Move();
-
-        if(Input.GetKey("T"))
+        if (GetInput(out NetworkInputData data))
         {
-            anim.SetBool("Talk", true);
+            data.direction.Normalize();
+            _cc.Move(5*data.direction*Runner.DeltaTime);
+            Vector3 movementDir = new Vector3(_cc.Velocity.x, 0, _cc.Velocity.z);
+            movementDir.Normalize();
+            float movementSpeed = movementDir.magnitude;
+            characterAnimator.SetFloat("walkSpeed",movementSpeed);
+            
         }
     }
-
-    public void Move()
-    {
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
-        targetSpeed = walkSpeed * inputMagnitude;
-        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
-        charController.Move(movementDirection * currentSpeed * Time.deltaTime);
-        Debug.Log(inputMagnitude);
-        movementDirection.Normalize();
-        if (inputMagnitude > 0)
-        {
-            anim.SetBool("Walk", true);
-        }
-        
-       
-    }
-    
 }
