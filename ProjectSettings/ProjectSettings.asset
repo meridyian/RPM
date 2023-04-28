@@ -800,7 +800,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    Standalone: READY_PLAYER_ME
+    Standalone: READY_PLAYER_ME;FUSION_WEAVER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
