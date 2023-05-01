@@ -37,7 +37,7 @@ public class PlayerControl : NetworkBehaviour
         
     }
 
-
+ 
 
     public override void FixedUpdateNetwork()
     {
@@ -48,8 +48,31 @@ public class PlayerControl : NetworkBehaviour
             Vector3 movementDir = new Vector3(_cc.Velocity.x, 0, _cc.Velocity.z);
             movementDir.Normalize();
             float movementSpeed = movementDir.magnitude;
-            characterAnimator.SetFloat("walkSpeed",movementSpeed);
-            
+            characterAnimator.SetFloat("walkSpeed", movementSpeed);
+            if (data.HiphopAnim)
+            {
+                StartCoroutine(HipHopAnimation());
+            }
+            if (data.SillyDanceAnim)
+            {
+                StartCoroutine(SillyDanceAnimation());
+            }
         }
     }
+
+    public IEnumerator HipHopAnimation()
+    {
+        characterAnimator.SetBool("HipHop", true);
+        yield return new WaitForSeconds(0.5f);
+        characterAnimator.SetBool("HipHop", false);
+    }
+    public IEnumerator SillyDanceAnimation()
+    {
+        characterAnimator.SetBool("SillyDance", true);
+        yield return new WaitForSeconds(1f);
+        characterAnimator.SetBool("SillyDance", false);
+    }
+    
+    
+    
 }

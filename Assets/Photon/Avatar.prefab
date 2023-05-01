@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   Animator: {fileID: 7085869693156313773}
-  TotalWords: 1
+  TotalWords: 2
   SyncSettings: 79
   FloatAccuracy:
     _value: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 000000008a18fce4b9abd9d3
+  StateHashes: 000000008a18fce4b9abd9d327c98708047984ae54e27f299690be8b
   TriggerHashes: 00000000
 --- !u!1 &5937991895604444124
 GameObject:
@@ -175,7 +175,6 @@ GameObject:
   - component: {fileID: 8818660124156432483}
   - component: {fileID: 3477269520812984672}
   - component: {fileID: 6159974250405815091}
-  - component: {fileID: 2445558528884900113}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -315,23 +314,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!114 &2445558528884900113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5937991895604444124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
-  m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
-  mNoiseOffsets: {x: -598.02747, y: 176.4978, z: 555.1574}
 --- !u!1 &8673131908743889404
 GameObject:
   m_ObjectHideFlags: 0

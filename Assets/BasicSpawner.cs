@@ -52,6 +52,18 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         {
             data.direction += Vector3.right;
         }
+
+        if (Input.GetKey(KeyCode.H))
+        {
+            data.HiphopAnim = true;
+            Debug.Log("h is pressed");
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
+            data.SillyDanceAnim = true;
+            Debug.Log("t is pressed");
+        }
+        
         
         
         input.Set(data);
