@@ -45,6 +45,7 @@ public class PlayerControl : NetworkBehaviour
         {
             data.direction.Normalize();
             _cc.Move(5*data.direction*Runner.DeltaTime);
+            
             Vector3 movementDir = new Vector3(_cc.Velocity.x, 0, _cc.Velocity.z);
             movementDir.Normalize();
             float movementSpeed = movementDir.magnitude;
