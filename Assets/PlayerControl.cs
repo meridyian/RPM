@@ -58,6 +58,10 @@ public class PlayerControl : NetworkBehaviour
             {
                 StartCoroutine(SillyDanceAnimation());
             }
+            if (data.TalkingAnim)
+            {
+                StartCoroutine(TalkingAnimation());
+            }
         }
     }
 
@@ -72,6 +76,12 @@ public class PlayerControl : NetworkBehaviour
         characterAnimator.SetBool("SillyDance", true);
         yield return new WaitForSeconds(1f);
         characterAnimator.SetBool("SillyDance", false);
+    }
+    public IEnumerator TalkingAnimation()
+    {
+        characterAnimator.SetBool("talking", true);
+        yield return new WaitForSeconds(3f);
+        characterAnimator.SetBool("talking", false);
     }
     
     

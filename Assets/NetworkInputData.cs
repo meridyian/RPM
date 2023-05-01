@@ -7,4 +7,5 @@ public struct NetworkInputData : INetworkInput
 
    public bool HiphopAnim;
    public bool SillyDanceAnim;
+   public bool TalkingAnim;
 }

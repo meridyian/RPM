@@ -36,6 +36,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         var data = new NetworkInputData();
 
+        // movement control
+        
         if (Input.GetKey(KeyCode.W))
         {
             data.direction += Vector3.forward;
@@ -53,17 +55,21 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             data.direction += Vector3.right;
         }
 
+        // animation control 
         if (Input.GetKey(KeyCode.H))
         {
             data.HiphopAnim = true;
             Debug.Log("h is pressed");
         }
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetKey(KeyCode.K))
         {
             data.SillyDanceAnim = true;
-            Debug.Log("t is pressed");
+            Debug.Log("K is pressed");
         }
-        
+        if (Input.GetKey(KeyCode.T))
+        {
+            data.TalkingAnim = true;
+        }
         
         
         input.Set(data);
