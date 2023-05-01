@@ -36,7 +36,16 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         var data = new NetworkInputData();
 
-        // movement control
+        // movement inputs
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        data.direction = new Vector3(horizontalInput, 0,verticalInput);
+
+        
+        
+        /*
         
         if (Input.GetKey(KeyCode.W))
         {
@@ -54,8 +63,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         {
             data.direction += Vector3.right;
         }
+        */
 
-        // animation control 
+        // animation inputs
+        
         if (Input.GetKey(KeyCode.H))
         {
             data.HiphopAnim = true;

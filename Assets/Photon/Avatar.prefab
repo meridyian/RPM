@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4228363932064979451}
   - component: {fileID: 4228363932064979448}
   - component: {fileID: 4228363932064979454}
-  - component: {fileID: 4228363932064979455}
   - component: {fileID: 7053426031736128483}
   - component: {fileID: 3493079697479546314}
+  - component: {fileID: 4392771608946435418}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -78,46 +78,10 @@ MonoBehaviour:
     RawGuidValue: 1a72d583cf64f420397da7c6fbd86408
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 4228363932064979455}
   - {fileID: 7053426031736128483}
   - {fileID: 3493079697479546314}
+  - {fileID: 4392771608946435418}
   SimulationBehaviours: []
---- !u!114 &4228363932064979455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4228363932064979428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 2789182060829452604}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
-  gravity: -9.81
-  jumpImpulse: 5
-  acceleration: 10
-  braking: 10
-  maxSpeed: 4
-  rotationSpeed: 15
-  _IsGrounded: 0
-  _Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &7053426031736128483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  rotationSpeed: 0.01
   characterAnimator: {fileID: 7085869693156313773}
   localCamera: {fileID: 5818677932926707141}
 --- !u!114 &3493079697479546314
@@ -161,8 +126,44 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 000000008a18fce4b9abd9d327c98708047984ae54e27f299690be8b
+  StateHashes: 000000008a18fce4b9abd9d327c98708047984ae54e27f299690be8b166615569245c3b9
   TriggerHashes: 00000000
+--- !u!114 &4392771608946435418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228363932064979428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 0}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
+  gravity: -9.81
+  jumpImpulse: 5
+  acceleration: 5
+  braking: 10
+  maxSpeed: 5
+  rotationSpeed: 1
+  _IsGrounded: 0
+  _Velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &5937991895604444124
 GameObject:
   m_ObjectHideFlags: 0

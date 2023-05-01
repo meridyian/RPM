@@ -7,14 +7,17 @@ using UnityEngine;
 
 public class PlayerControl : NetworkBehaviour
 {
+    [SerializeField] private float rotationSpeed = 0.01f;
     public static PlayerControl Local { get; set; }
     public Animator characterAnimator;
     private NetworkCharacterControllerPrototype _cc;
     public CinemachineVirtualCamera localCamera;
+    private Vector3 _forward;
 
     private void Awake()
     {
         _cc = GetComponent<NetworkCharacterControllerPrototype>();
+        _forward = transform.forward;
     }
 
     public override void Spawned()
@@ -43,13 +46,33 @@ public class PlayerControl : NetworkBehaviour
     {
         if (GetInput(out NetworkInputData data))
         {
+            float inputMagnitude = Mathf.Clamp01(data.direction.magnitude);
+            data.direction = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) *
+                             data.direction;
             data.direction.Normalize();
+            
+            // actual move part 
             _cc.Move(5*data.direction*Runner.DeltaTime);
             
+            if (data.direction.sqrMagnitude > 0)
+                _forward = data.direction;
+            
+            
+            if (data.direction != Vector3.zero)
+            {
+            
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(data.direction),
+                    rotationSpeed);
+            }
+            
+            // to control animation blend tree 
+            /*
             Vector3 movementDir = new Vector3(_cc.Velocity.x, 0, _cc.Velocity.z);
             movementDir.Normalize();
-            float movementSpeed = movementDir.magnitude;
-            characterAnimator.SetFloat("walkSpeed", movementSpeed);
+            */
+            characterAnimator.SetFloat("walkSpeed", inputMagnitude);
+
+            
             if (data.HiphopAnim)
             {
                 StartCoroutine(HipHopAnimation());
