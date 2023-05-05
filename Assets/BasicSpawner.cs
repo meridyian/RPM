@@ -44,46 +44,29 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         data.direction = new Vector3(horizontalInput, 0,verticalInput);
 
         
-        
-        /*
-        
-        if (Input.GetKey(KeyCode.W))
-        {
-            data.direction += Vector3.forward;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            data.direction += Vector3.back;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            data.direction += Vector3.left;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            data.direction += Vector3.right;
-        }
-        */
-
         // animation inputs
         if (data.direction == Vector3.zero)
         {
             if (Input.GetKey(KeyCode.H))
             {
                 data.HiphopAnim = true;
-                Debug.Log("h is pressed");
+
             }
             if (Input.GetKey(KeyCode.K))
             {
                 data.SillyDanceAnim = true;
-                Debug.Log("K is pressed");
+
             }
             if (Input.GetKey(KeyCode.T))
             {
                 data.TalkingAnim = true;
             }
+
         }
-       
+
+        
+
+        
         
         
         input.Set(data);

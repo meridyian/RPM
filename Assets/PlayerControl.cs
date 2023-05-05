@@ -8,6 +8,8 @@ using UnityEngine;
 public class PlayerControl : NetworkBehaviour
 {
     [SerializeField] private float rotationSpeed = 0.01f;
+    public float raycastDistance = 2f;
+    public LayerMask interactableLayers;
     public static PlayerControl Local { get; set; }
     public Animator characterAnimator;
     private NetworkCharacterControllerPrototype _cc;
@@ -25,19 +27,14 @@ public class PlayerControl : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             Local = this;
-            Debug.Log("Spawned local player");
+
         }
         else
         {
             //CinemachineVirtualCamera localCamera = GetComponent<CinemachineVirtualCamera>();
             localCamera.enabled = false;
             
-            Debug.Log("spawned remote player");
-            
-            
         }
-        
-        
     }
 
  
@@ -85,7 +82,10 @@ public class PlayerControl : NetworkBehaviour
             {
                 StartCoroutine(TalkingAnimation());
             }
+
         }
+        
+        
     }
 
     public IEnumerator HipHopAnimation()
