@@ -4,14 +4,19 @@ using System;
 using Fusion.Sockets;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef _playerPrefab;
+    public Chair chair;
+    public Canvas sittingCanvas;
+
 
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         if (_runner.IsServer)
@@ -41,103 +46,117 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        data.direction = new Vector3(horizontalInput, 0,verticalInput);
+        data.direction = new Vector3(horizontalInput, 0, verticalInput);
 
-        
+
         // animation inputs
         if (data.direction == Vector3.zero)
         {
             if (Input.GetKey(KeyCode.H))
             {
                 data.HiphopAnim = true;
-
             }
+
             if (Input.GetKey(KeyCode.K))
             {
                 data.SillyDanceAnim = true;
-
             }
+
             if (Input.GetKey(KeyCode.T))
             {
                 data.TalkingAnim = true;
             }
-
+            
         }
 
+
+        /* check if the player is already sitting 
+        if (Input.GetMouseButtonDown(0) && chair.isEmpty)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.CompareTag("Chair"))
+                {
+                    sittingCanvas.gameObject.SetActive(true);
+                    
+                }
+            }
+        }
         
 
+        if (!chair.isEmpty)
+        {
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                data.sit = false;
+                data.stand = true;
+                chair.isEmpty = true;
+            }
+            
+        }*/
+
+        data.isLeftClickPressed = Input.GetMouseButton(0);
         
-        
-        
+
         input.Set(data);
     }
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
     {
-        
     }
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
-        
     }
 
     public void OnConnectedToServer(NetworkRunner runner)
     {
-        
     }
 
     public void OnDisconnectedFromServer(NetworkRunner runner)
     {
-        
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
     {
-        
     }
 
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
     {
-        
     }
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
     {
-        
     }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
-        
     }
 
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
     {
-        
     }
 
     public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
     {
-        
     }
 
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data)
     {
-        
     }
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
-        
     }
 
     public void OnSceneLoadStart(NetworkRunner runner)
     {
-        
     }
 
     private NetworkRunner _runner;
+
     async void StartGame(GameMode mode)
     {
         // Create the fusion runner and let it know that we will be providing user input
@@ -146,12 +165,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
         // Start or join (depends on gamemode) a session with a specific name
         await _runner.StartGame(new StartGameArgs()
-        {
-            GameMode = mode,
-            SessionName = "TestRoom",
-            Scene = SceneManager.GetActiveScene().buildIndex,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
-        }
+            {
+                GameMode = mode,
+                SessionName = "TestRoom",
+                Scene = SceneManager.GetActiveScene().buildIndex,
+                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            }
         );
     }
 
@@ -171,5 +190,3 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 }
-    
-

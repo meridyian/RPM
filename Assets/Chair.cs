@@ -1,24 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fusion;
+using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Chair : NetworkBehaviour
 {
+    [Networked]
+    public bool IsChairFull{ get; set; }
 
-    public NetworkBool isSitting;
-    public Canvas SittingCanvas;
-    
-    public override void FixedUpdateNetwork()
+    public string X;
+
+    public void Update()
     {
-        
-        if (Input.GetMouseButtonDown(0))
+        if (Object != null)
         {
-            isSitting = true;
-            SittingCanvas.gameObject.SetActive(true);
-            Debug.Log("sitting");
-
+            X = Object.StateAuthority.ToString();
         }
     }
 }

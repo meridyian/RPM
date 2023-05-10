@@ -52,10 +52,10 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.03
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.82, z: 0}
 --- !u!114 &4228363932064979454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,8 +96,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   rotationSpeed: 0.01
+  raycastDistance: 2
   characterAnimator: {fileID: 7085869693156313773}
   localCamera: {fileID: 5818677932926707141}
+  sit:
+    _value: 0
 --- !u!114 &3493079697479546314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +129,7 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 000000008a18fce4b9abd9d327c98708047984ae54e27f299690be8b166615569245c3b9
+  StateHashes: 000000008a18fce4b9abd9d327c98708047984ae54e27f299690be8b166615569245c3b9263db1ee058db248
   TriggerHashes: 00000000
 --- !u!114 &4392771608946435418
 MonoBehaviour:
