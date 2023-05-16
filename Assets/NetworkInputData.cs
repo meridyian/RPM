@@ -13,10 +13,7 @@ public struct NetworkInputData : INetworkInput
    public NetworkBool TalkingAnim;
 
    public NetworkBool isLeftClickPressed;
-   public NetworkBool stand;
+   [Networked]
+   public bool stand { get; set; }
    
-   public NetworkBool sit;
-
-   
-
 }

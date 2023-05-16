@@ -7,9 +7,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using WebSocketSharp;
 
-public class SittingCanvas : NetworkBehaviour
+public class SittingCanvas : MonoBehaviour
 {
-    public Chair chair;
+    [Networked]
+    public bool yesPressed{ get; set; }
 
     
     public void Close()
@@ -20,9 +21,16 @@ public class SittingCanvas : NetworkBehaviour
     
     public void YesPressed()
     {
+        yesPressed = true;
+        //GetComponentInParent<PlayerControl>().charController.enabled = false;
+        //GetComponentInParent<PlayerControl>().characterAnimator.SetBool("Sit", true);
+        //GetComponentInParent<PlayerControl>().IsSitting = true;
         gameObject.SetActive(false);
+     
+
         //chair.isEmpty = false;
     }
+    
 
 
     

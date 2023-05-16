@@ -12,7 +12,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     public Chair chair;
-    public Canvas sittingCanvas;
+
 
 
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
@@ -67,35 +67,49 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
                 data.TalkingAnim = true;
             }
             
-        }
-
-
-        /* check if the player is already sitting 
-        if (Input.GetMouseButtonDown(0) && chair.isEmpty)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider.gameObject.CompareTag("Chair"))
-                {
-                    sittingCanvas.gameObject.SetActive(true);
-                    
-                }
-            }
+            
         }
         
+        
+        /* 
+       if (chair.IsChairFull)
+       {
+           if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+           {
+               PlayerControl.Local.IsSitting = false;
+           }
+       }
+       
 
-        if (!chair.isEmpty)
-        {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            {
-                data.sit = false;
-                data.stand = true;
-                chair.isEmpty = true;
-            }
-            
-        }*/
+       
+
+
+      check if the player is already sitting 
+       if (Input.GetMouseButtonDown(0) && chair.isEmpty)
+       {
+           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+           RaycastHit hit;
+           if (Physics.Raycast(ray, out hit))
+           {
+               if (hit.collider.gameObject.CompareTag("Chair"))
+               {
+                   sittingCanvas.gameObject.SetActive(true);
+                   
+               }
+           }
+       }
+       
+
+       if (!chair.isEmpty)
+       {
+           if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+           {
+               data.sit = false;
+               data.stand = true;
+               chair.isEmpty = true;
+           }
+           
+       }*/
 
         data.isLeftClickPressed = Input.GetMouseButton(0);
         
