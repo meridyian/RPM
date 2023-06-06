@@ -9,17 +9,24 @@ using UnityEngine;
 public class PlayerControl : NetworkBehaviour
 {
     [SerializeField] private float rotationSpeed = 0.01f;
+    public float PlayerSpeed = 2f;
+
+    public float GravityValue = -9.81f;
+    [Networked] public bool FillChair{ get; set; }
+
+    private Vector3 velocity;
+    private bool _jumpPressed;
     
     //controllers
     public static PlayerControl Local { get; set; }
     public Animator characterAnimator;
-    private NetworkCharacterControllerPrototype _cc;
+
     public CinemachineVirtualCamera localCamera;
     public CharacterController charController;
     public Canvas sittingCanvas;
     
     //movement
-    private Vector3 _forward;
+
     private Transform chairTransform;
     [Networked] public bool IsSitting{ get; set; }
     [Networked] public bool IsStanding{ get; set; }
@@ -30,9 +37,7 @@ public class PlayerControl : NetworkBehaviour
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
-        _cc = GetComponent<NetworkCharacterControllerPrototype>();
-        _forward = transform.forward;
-        
+     
         
     }
 
@@ -58,8 +63,10 @@ public class PlayerControl : NetworkBehaviour
         }
         
         //input authority only belongs to host, check if yo are the host
+        
         if (!Object.HasInputAuthority)
             return;
+            
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -77,10 +84,13 @@ public class PlayerControl : NetworkBehaviour
                     // is sitting yerine sit gibi oturucak olmasına bakan bi bool yap canvasta yese basınca true olsun
                     if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
                     {
-                        //Rpc_IWantToSitBilader();
+                        
+                        FillChair = true;
+                        if(hit.transform.TryGetComponent<Chair>(out var chair ))
+                            chair.DealSittingRpc(FillChair);
+                        //hit.collider.GetComponentInParent<Chair>().IsChairFull = true;
                         //transform.position = Vector3.Lerp(transform.position,
-                           // chairTransform.GetChild(0).transform.position, 5f);
-                        hit.collider.GetComponentInParent<Chair>().IsChairFull = true;
+
                     }
                     /*
                     var chair = hit.transform.gameObject.GetComponent<Chair>();
@@ -91,18 +101,19 @@ public class PlayerControl : NetworkBehaviour
             }
         }
         
+        
         // oturuyor halinde olması lazım, is sitting güzel bunun için
         if (IsSitting)
         {
             
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
+                IsSitting = false;
                 //sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
                 StartCoroutine(SitToStandAnimation());
                 if (IsStanding)
                 {
                     sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
-                    IsSitting = false;
                     charController.enabled = true;
                 }
                 
@@ -118,77 +129,53 @@ public class PlayerControl : NetworkBehaviour
         Debug.Log("sitting animation will play");
     }
     
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void Rpc_IWantToSitBilader()
-    {
-        Debug.Log("lel");
-    }
+    
 
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetworkInputData data))
-        {
-            // oturuyor halde olması yine issitting okay otururken input alma
-            if (!IsSitting)
-            {
-                float inputMagnitude = Mathf.Clamp01(data.direction.magnitude);
-                data.direction = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) *
-                                 data.direction;
-                data.direction.Normalize();
-
-                // actual move part 
-                _cc.Move(5 * data.direction * Runner.DeltaTime);
-
-                if (data.direction.sqrMagnitude > 0)
-                    _forward = data.direction;
-
-
-                if (data.direction != Vector3.zero)
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(data.direction),
-                        rotationSpeed);
-               
-                }
-            
-                characterAnimator.SetFloat("walkSpeed", inputMagnitude);
-            
-                if (data.HiphopAnim) {
-                    StartCoroutine(HipHopAnimation());
-                }
-
-                if (data.SillyDanceAnim)
-                {
-                    StartCoroutine(SillyDanceAnimation());
-                }
-
-                if (data.TalkingAnim)
-                {
-                    StartCoroutine(TalkingAnimation());
-                }
-                /*
-                if (data.stand)
-                {
-                    IsSitting = false;
-                    characterAnimator.SetBool("Stand", true);
-                }
-                */
-            }
-
-            if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
-            {
-                Rpc_IWantToSitBilader();
-                charController.enabled = false;
-                transform.position = Vector3.Lerp(transform.position,
-                    chairTransform.GetChild(0).transform.position, 5f);
-                characterAnimator.SetBool("Sit", true);
-                IsSitting = true;
-            }
         
+        if (HasStateAuthority == false)
+        {
+            return;
         }
+
+        if (!IsSitting)
+        {
+            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))*Runner.DeltaTime* PlayerSpeed;
+
+            float movementMagnitude = Mathf.Clamp01(move.magnitude);
+            move.Normalize();
+            
+            
+            //velocity.y += GravityValue * Runner.DeltaTime;
+        
+            charController.Move(move*5* Runner.DeltaTime);
+        
+            if (move != Vector3.zero)
+            {
+                gameObject.transform.forward = move;
+            }
+            characterAnimator.SetFloat("walkSpeed", movementMagnitude);
+
+        }
+        if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
+        {
+            charController.enabled = false;
+            transform.position = Vector3.Lerp(transform.position,
+                chairTransform.GetChild(0).transform.position, 5f);
+            characterAnimator.SetBool("Sit",true);
+            IsSitting = true;
+            
+            //hit.collider.GetComponentInParent<Chair>().IsChairFull = true;
+            //transform.position = Vector3.Lerp(transform.position,
+
+        }
+        
+
     }
     
-
+/*
     //dance animations
     
     public IEnumerator HipHopAnimation()
@@ -209,7 +196,7 @@ public class PlayerControl : NetworkBehaviour
         yield return new WaitForSeconds(3f);
         characterAnimator.SetBool("talking", false);
     }
-    
+    */
     public IEnumerator SitToStandAnimation()
     {
         characterAnimator.SetBool("Sit", false);
@@ -220,8 +207,5 @@ public class PlayerControl : NetworkBehaviour
         IsStanding = true;
         characterAnimator.SetBool("Stand", false);
     }
-
-    
-    
-    
 }
+    

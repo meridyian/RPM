@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 4228363932064979454}
   - component: {fileID: 7053426031736128483}
   - component: {fileID: 3493079697479546314}
-  - component: {fileID: 4392771608946435418}
+  - component: {fileID: 4016050435097948253}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectInterest: 1
   DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
+  DestroyWhenStateAuthorityLeaves: 1
   AllowStateAuthorityOverride: 0
   AoiPositionSource: {fileID: 0}
   Flags: 2305
@@ -811,7 +811,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7053426031736128483}
   - {fileID: 3493079697479546314}
-  - {fileID: 4392771608946435418}
+  - {fileID: 4016050435097948253}
   SimulationBehaviours: []
 --- !u!114 &7053426031736128483
 MonoBehaviour:
@@ -827,12 +827,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   rotationSpeed: 0.01
-  raycastDistance: 2
   characterAnimator: {fileID: 7085869693156313773}
   localCamera: {fileID: 5818677932926707141}
-  _IsSitting: 0
   charController: {fileID: 4228363932064979448}
   sittingCanvas: {fileID: 645543851}
+  _IsSitting: 0
+  _IsStanding: 0
   X: 
 --- !u!114 &3493079697479546314
 MonoBehaviour:
@@ -864,7 +864,7 @@ MonoBehaviour:
     _hash: -814817977
   StateHashes: 000000008a18fce4b9abd9d327c98708047984ae54e27f299690be8b166615569245c3b9263db1ee058db248c6459eaee5f59d08
   TriggerHashes: 00000000
---- !u!114 &4392771608946435418
+--- !u!114 &4016050435097948253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -873,12 +873,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4228363932064979428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   InterpolationSpace: 0
-  InterpolationTarget: {fileID: 0}
+  InterpolationTarget: {fileID: 2789182060829452604}
   InterpolateErrorCorrection: 1
   InterpolatedErrorCorrectionSettings:
     MinRate: 3.3
@@ -892,14 +892,6 @@ MonoBehaviour:
     RotTeleportRadians: 1.5
   UseLegacySharedModeInterpolation: 0
   TargetInterpolationDelay: 0.03
-  gravity: -9.81
-  jumpImpulse: 5
-  acceleration: 5
-  braking: 10
-  maxSpeed: 5
-  rotationSpeed: 1
-  _IsGrounded: 0
-  _Velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &5937991895604444124
 GameObject:
   m_ObjectHideFlags: 0
