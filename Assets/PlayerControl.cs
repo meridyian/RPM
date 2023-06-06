@@ -9,7 +9,7 @@ using UnityEngine;
 public class PlayerControl : NetworkBehaviour
 {
     [SerializeField] private float rotationSpeed = 0.01f;
-    public float PlayerSpeed = 2f;
+    public float PlayerSpeed = 5f;
 
     public float GravityValue = -9.81f;
     [Networked] public bool FillChair{ get; set; }
@@ -37,12 +37,13 @@ public class PlayerControl : NetworkBehaviour
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
-     
         
+
     }
 
     public override void Spawned()
     {
+
         if (Object.HasInputAuthority)
         {
             Local = this;
@@ -84,7 +85,6 @@ public class PlayerControl : NetworkBehaviour
                     // is sitting yerine sit gibi oturucak olmasına bakan bi bool yap canvasta yese basınca true olsun
                     if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
                     {
-                        
                         FillChair = true;
                         if(hit.transform.TryGetComponent<Chair>(out var chair ))
                             chair.DealSittingRpc(FillChair);
@@ -105,15 +105,16 @@ public class PlayerControl : NetworkBehaviour
         // oturuyor halinde olması lazım, is sitting güzel bunun için
         if (IsSitting)
         {
-            
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 IsSitting = false;
+                FillChair = false;
+                chairTransform.GetComponent<Chair>().DealSittingRpc(FillChair);
                 //sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
                 StartCoroutine(SitToStandAnimation());
                 if (IsStanding)
                 {
-                    sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
+                    //sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
                     charController.enabled = true;
                 }
                 
@@ -143,24 +144,27 @@ public class PlayerControl : NetworkBehaviour
         if (!IsSitting)
         {
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))*Runner.DeltaTime* PlayerSpeed;
-
-            float movementMagnitude = Mathf.Clamp01(move.magnitude);
             move.Normalize();
+            float movementMagnitude = Mathf.Clamp01(move.magnitude);
             
             
             //velocity.y += GravityValue * Runner.DeltaTime;
         
             charController.Move(move*5* Runner.DeltaTime);
-        
+            characterAnimator.SetFloat("walkSpeed", movementMagnitude);
             if (move != Vector3.zero)
             {
-                gameObject.transform.forward = move;
+               //gameObject.transform.forward = move;
+               
+                
             }
-            characterAnimator.SetFloat("walkSpeed", movementMagnitude);
+            
+            
 
         }
-        if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
+        if (FillChair)
         {
+            IsStanding = false;
             charController.enabled = false;
             transform.position = Vector3.Lerp(transform.position,
                 chairTransform.GetChild(0).transform.position, 5f);
@@ -205,7 +209,7 @@ public class PlayerControl : NetworkBehaviour
             chairTransform.GetChild(0).transform.position, 5f);
         yield return new WaitForSeconds(1.5f);
         IsStanding = true;
-        characterAnimator.SetBool("Stand", false);
+
     }
 }
     
