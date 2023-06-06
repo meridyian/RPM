@@ -88,16 +88,8 @@ public class PlayerControl : NetworkBehaviour
                         FillChair = true;
                         if(hit.transform.TryGetComponent<Chair>(out var chair ))
                             chair.DealSittingRpc(FillChair);
-                        //hit.collider.GetComponentInParent<Chair>().IsChairFull = true;
-                        //transform.position = Vector3.Lerp(transform.position,
-
                     }
-                    /*
-                    var chair = hit.transform.gameObject.GetComponent<Chair>();
-                    chair.IsChairFull = !chair.IsChairFull;
-                    */
                 }
-                
             }
         }
         
@@ -108,13 +100,14 @@ public class PlayerControl : NetworkBehaviour
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 IsSitting = false;
+                IsStanding = true;
                 FillChair = false;
                 chairTransform.GetComponent<Chair>().DealSittingRpc(FillChair);
                 //sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
                 StartCoroutine(SitToStandAnimation());
                 if (IsStanding)
                 {
-                    //sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
+                    sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
                     charController.enabled = true;
                 }
                 
@@ -147,22 +140,12 @@ public class PlayerControl : NetworkBehaviour
             move.Normalize();
             float movementMagnitude = Mathf.Clamp01(move.magnitude);
             
-            
-            //velocity.y += GravityValue * Runner.DeltaTime;
-        
             charController.Move(move*5* Runner.DeltaTime);
             characterAnimator.SetFloat("walkSpeed", movementMagnitude);
-            if (move != Vector3.zero)
-            {
-               //gameObject.transform.forward = move;
-               
-                
-            }
             
-            
-
         }
-        if (FillChair)
+        
+        if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
         {
             IsStanding = false;
             charController.enabled = false;
