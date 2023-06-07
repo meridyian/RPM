@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Fusion;
 using Unity.VisualScripting;
+using UnityEditor.Scripting;
 using UnityEngine;
 
 
@@ -79,15 +80,20 @@ public class PlayerControl : NetworkBehaviour
                 if (hit.collider.gameObject.CompareTag("Chair"))
                 {
                     Debug.Log("hit the chair");
-                    chairTransform = hit.collider.transform;
-                    sittingCanvas.gameObject.SetActive(true);
-                    // is sitting yerine sit gibi oturucak olmasına bakan bi bool yap canvasta yese basınca true olsun
-                    if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
+                    if (!hit.transform.GetComponent<Chair>().IsChairFull)
                     {
-                        FillChair = true; 
-                        if(hit.transform.TryGetComponent<Chair>(out var chair )) 
-                            chair.DealSittingRpc(FillChair);
+                        chairTransform = hit.collider.transform;
+                        sittingCanvas.gameObject.SetActive(true);
+                        // is sitting yerine sit gibi oturucak olmasına bakan bi bool yap canvasta yese basınca true olsun
+                        if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
+                        {
+                            FillChair = true; 
+                            if(hit.transform.TryGetComponent<Chair>(out var chair )) 
+                                chair.DealSittingRpc(FillChair);
+                        }
                     }
+                    Debug.Log("chair is full");
+                    
 
                 }
             }
