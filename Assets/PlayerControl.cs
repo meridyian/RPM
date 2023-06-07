@@ -193,8 +193,8 @@ public class PlayerControl : NetworkBehaviour
     {
         characterAnimator.SetBool("Sit", false);
         characterAnimator.SetBool("Stand", true);
-        transform.position = Vector3.Lerp(transform.position,
-            chairTransform.GetChild(0).transform.position, 5f);
+        //transform.position = Vector3.Lerp(transform.position,
+            //chairTransform.GetChild(0).transform.position, 5f);
         yield return new WaitForSeconds(1.5f);
         IsStanding = true;
 
