@@ -139,7 +139,7 @@ public class PlayerControl : NetworkBehaviour
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))*Runner.DeltaTime* PlayerSpeed;
             move.Normalize();
             float movementMagnitude = Mathf.Clamp01(move.magnitude);
-            move = Quaternion.AngleAxis(localCamera.transform.rotation.eulerAngles.y, Vector3.up) * move;
+            move = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) * move;
             characterAnimator.SetFloat("walkSpeed", movementMagnitude);
             if (move != Vector3.zero)
             {
