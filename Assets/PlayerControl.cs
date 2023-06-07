@@ -81,14 +81,14 @@ public class PlayerControl : NetworkBehaviour
                     Debug.Log("hit the chair");
                     chairTransform = hit.collider.transform;
                     sittingCanvas.gameObject.SetActive(true);
-                    
                     // is sitting yerine sit gibi oturucak olmasına bakan bi bool yap canvasta yese basınca true olsun
                     if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
                     {
-                        FillChair = true;
-                        if(hit.transform.TryGetComponent<Chair>(out var chair ))
+                        FillChair = true; 
+                        if(hit.transform.TryGetComponent<Chair>(out var chair )) 
                             chair.DealSittingRpc(FillChair);
                     }
+
                 }
             }
         }
@@ -139,13 +139,18 @@ public class PlayerControl : NetworkBehaviour
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))*Runner.DeltaTime* PlayerSpeed;
             move.Normalize();
             float movementMagnitude = Mathf.Clamp01(move.magnitude);
-            
-            charController.Move(move*5* Runner.DeltaTime);
+            move = Quaternion.AngleAxis(localCamera.transform.rotation.eulerAngles.y, Vector3.up) * move;
             characterAnimator.SetFloat("walkSpeed", movementMagnitude);
-            
+            if (move != Vector3.zero)
+            {
+                gameObject.transform.forward = move;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move),
+                    rotationSpeed);
+            }
+            charController.Move(move*5* Runner.DeltaTime);
         }
         
-        if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
+        if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed )
         {
             IsStanding = false;
             charController.enabled = false;
