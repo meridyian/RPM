@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using Fusion;
-using Unity.VisualScripting;
-using UnityEditor.Scripting;
 using UnityEngine;
 
 
@@ -154,6 +151,19 @@ public class PlayerControl : NetworkBehaviour
                     rotationSpeed);
             }
             charController.Move(move*5* Runner.DeltaTime);
+            
+        }
+        if (Input.GetKey(KeyCode.H))
+        {
+            StartCoroutine(HipHopAnimation());
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
+            StartCoroutine(TalkingAnimation());
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            StartCoroutine(SillyDanceAnimation());
         }
         
         if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed )
@@ -165,15 +175,12 @@ public class PlayerControl : NetworkBehaviour
             characterAnimator.SetBool("Sit",true);
             IsSitting = true;
             
-            //hit.collider.GetComponentInParent<Chair>().IsChairFull = true;
-            //transform.position = Vector3.Lerp(transform.position,
-
         }
         
 
     }
     
-/*
+
     //dance animations
     
     public IEnumerator HipHopAnimation()
@@ -194,7 +201,7 @@ public class PlayerControl : NetworkBehaviour
         yield return new WaitForSeconds(3f);
         characterAnimator.SetBool("talking", false);
     }
-    */
+    
     public IEnumerator SitToStandAnimation()
     {
         IsSitting = false;
