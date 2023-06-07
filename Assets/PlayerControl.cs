@@ -37,13 +37,13 @@ public class PlayerControl : NetworkBehaviour
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
-        
+
 
     }
 
     public override void Spawned()
     {
-
+        IsStanding = true;
         if (Object.HasInputAuthority)
         {
             Local = this;
@@ -99,7 +99,7 @@ public class PlayerControl : NetworkBehaviour
         {
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
-                IsSitting = false;
+                
                 IsStanding = true;
                 FillChair = false;
                 chairTransform.GetComponent<Chair>().DealSittingRpc(FillChair);
@@ -108,7 +108,7 @@ public class PlayerControl : NetworkBehaviour
                 if (IsStanding)
                 {
                     sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed = false;
-                    charController.enabled = true;
+                    
                 }
                 
             }
@@ -134,7 +134,7 @@ public class PlayerControl : NetworkBehaviour
             return;
         }
 
-        if (!IsSitting)
+        if (!IsSitting || IsStanding)
         {
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))*Runner.DeltaTime* PlayerSpeed;
             move.Normalize();
@@ -191,12 +191,13 @@ public class PlayerControl : NetworkBehaviour
     */
     public IEnumerator SitToStandAnimation()
     {
+        IsSitting = false;
         characterAnimator.SetBool("Sit", false);
         characterAnimator.SetBool("Stand", true);
-        //transform.position = Vector3.Lerp(transform.position,
-            //chairTransform.GetChild(0).transform.position, 5f);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
         IsStanding = true;
+        yield return new WaitForSeconds(1.5f);
+        charController.enabled = true;
 
     }
 }
