@@ -19,7 +19,7 @@ public class PlayerControl : NetworkBehaviour
     public static PlayerControl Local { get; set; }
     public Animator characterAnimator;
 
-    public CinemachineVirtualCamera localCamera;
+    public CinemachineFreeLook localCamera;
     public CharacterController charController;
     public Canvas sittingCanvas;
     
@@ -42,10 +42,11 @@ public class PlayerControl : NetworkBehaviour
     public override void Spawned()
     {
         IsStanding = true;
-        if (Object.HasInputAuthority)
+        if (Object.HasStateAuthority)
         {
             Local = this;
             localCamera.transform.parent = null;
+            
         }
         else
         {

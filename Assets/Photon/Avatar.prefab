@@ -1085,7 +1085,7 @@ MonoBehaviour:
   GravityValue: -9.81
   _FillChair: 0
   characterAnimator: {fileID: 7085869693156313773}
-  localCamera: {fileID: 5818677932926707141}
+  localCamera: {fileID: 4130356568288331437}
   charController: {fileID: 4228363932064979448}
   sittingCanvas: {fileID: 645543851}
   _IsSitting: 0
@@ -1572,7 +1572,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8388020988559288923}
-  m_LocalRotation: {x: 0.18888098, y: -2.8083875e-14, z: 1.5317009e-14, w: 0.98200005}
+  m_LocalRotation: {x: 0.18888101, y: 0.000000026086306, z: -0.000000014411159, w: 0.98200005}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
