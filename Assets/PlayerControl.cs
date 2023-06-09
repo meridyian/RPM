@@ -86,8 +86,9 @@ public class PlayerControl : NetworkBehaviour
                         if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
                         {
                             FillChair = true; 
-                            if(hit.transform.TryGetComponent<Chair>(out var chair )) 
+                            if(hit.transform.TryGetComponent<Chair>(out var chair ))
                                 chair.DealSittingRpc(FillChair);
+                            
                         }
                     }
                     Debug.Log("chair is full");
@@ -212,6 +213,7 @@ public class PlayerControl : NetworkBehaviour
         IsStanding = true;
         yield return new WaitForSeconds(.75f);
         charController.enabled = true;
+        //chair.DealSittingRpc(FillChair);
 
     }
 }
