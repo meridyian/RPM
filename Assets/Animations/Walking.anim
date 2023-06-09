@@ -24077,7 +24077,7 @@ AnimationClip:
     m_StartTime: 0
     m_StopTime: 0.96666664
     m_OrientationOffsetY: -0.04
-    m_Level: -0.08
+    m_Level: 0.46
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
     m_LoopTime: 1
