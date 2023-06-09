@@ -209,6 +209,8 @@ public class PlayerControl : NetworkBehaviour
         characterAnimator.SetBool("Stand", true);
         yield return new WaitForSeconds(3f);
         IsStanding = true;
+        //transform.position = Vector3.Lerp(transform.position,
+            //chairTransform.GetChild(1).transform.position, 5f);
         yield return new WaitForSeconds(1.5f);
         charController.enabled = true;
 
