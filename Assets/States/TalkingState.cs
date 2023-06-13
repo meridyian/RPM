@@ -9,15 +9,12 @@ public class TalkingState : PlayerBaseState
     public TalkingState(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
-    public override void HandleInput()
+    public override void Enter()
     {
-        base.HandleInput();
-        if (Input.GetKey(KeyCode.T))
-        {
-            playerControl.TriggerAnimation(TalkParam);
-            playerStateManager.ChangeState(playerControl.hipHopState);
-        }
-            
-            
+        base.Enter();
+
+        playerControl.TriggerAnimation(TalkParam);
+        playerStateManager.ChangeState(playerControl.movement);
     }
+    
 }

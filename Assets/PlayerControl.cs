@@ -87,7 +87,7 @@ public class PlayerControl : NetworkBehaviour
         
         if (!Object.HasInputAuthority)
             return;
-            
+        /*
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -139,27 +139,11 @@ public class PlayerControl : NetworkBehaviour
                 
             }
             
-        }
+        }*/
   
         
     }
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void RPC_SendMessage()
-    {
-        Debug.Log("sitting animation will play");
-    }
     
-    public void TriggerAnimation(int param)
-    {
-        characterAnimator.SetTrigger(param);
-    }
-
-    public void Move(Vector3 move)
-    {
-        charController.Move(move* Runner.DeltaTime);
-    }
-
-
     public override void FixedUpdateNetwork()
     {
         if (HasStateAuthority == false)
@@ -168,9 +152,31 @@ public class PlayerControl : NetworkBehaviour
         }
         movementSM.CurrentState.HandleInput();
         movementSM.CurrentState.PhysicsUpdate();
-        movementSM.CurrentState.Exit();
+        movementSM.CurrentState.LogicUpdate();
         
-        
+    }
+
+    public void ResetMoveParams()
+    {
+        characterAnimator.SetFloat("walkSpeed", 0f);
+    }
+
+    /*
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_SendMessage()
+    {
+        Debug.Log("sitting animation will play");
+    }
+    */
+    
+    public void TriggerAnimation(int param)
+    {
+        characterAnimator.SetTrigger(param);
+    }
+
+    public void Move(Vector3 move)
+    {
+        charController.Move(move*5* Runner.DeltaTime);
     }
     /*
     public override void FixedUpdateNetwork()

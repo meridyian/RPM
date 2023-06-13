@@ -9,15 +9,12 @@ public class SillyDanceState : PlayerBaseState
     public SillyDanceState(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
-    public override void HandleInput()
+    public override void Enter()
     {
-        base.HandleInput();
-        if (Input.GetKey(KeyCode.K))
-        {
-            playerControl.TriggerAnimation(SillyDanceParam);
-            playerStateManager.ChangeState(playerControl.hipHopState);
-        }
-            
-            
+        base.Enter();
+        playerControl.TriggerAnimation(SillyDanceParam);
+        playerStateManager.ChangeState(playerControl.movement);
     }
+    
+
 }

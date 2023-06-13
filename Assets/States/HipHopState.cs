@@ -9,16 +9,16 @@ public class HipHopState : PlayerBaseState
     public HipHopState(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
-    
-    public override void HandleInput()
+
+    public override void Enter()
     {
-        base.HandleInput();
-        if (Input.GetKey(KeyCode.H))
-        {
-            playerControl.TriggerAnimation(HipHopParam);
-            playerStateManager.ChangeState(playerControl.hipHopState);
-        }
-            
-            
+        base.Enter();
+
+        playerControl.TriggerAnimation(HipHopParam);
+        playerStateManager.ChangeState(playerControl.movement);
     }
+    
+    
+    
+    
 }

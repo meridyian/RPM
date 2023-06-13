@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Movement : PlayerBaseState
 {
-    protected float speed;
+    protected float movementMagnitude;
     protected float turnSpeed =0.05f;
-    
+    private bool hiphop;
+    private bool talk;
+    private bool silly;
+
     private float horizontalInput;
     private float verticalInput;
     private Vector3 move;
@@ -14,13 +17,18 @@ public class Movement : PlayerBaseState
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
-    
+
     public override void Enter()
     {
         base.Enter();
         horizontalInput = verticalInput = 0.0f;
+
+        hiphop = false;
+        talk = false;
+        silly = false;
     }
-    
+
+
     public override void HandleInput()
     {
         base.HandleInput();
@@ -29,6 +37,7 @@ public class Movement : PlayerBaseState
         
         move = new Vector3(horizontalInput, 0, verticalInput);
         move.Normalize();
+        movementMagnitude = Mathf.Clamp01(move.magnitude);
         move = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) * move;
         if (move != Vector3.zero)
         {
@@ -36,18 +45,42 @@ public class Movement : PlayerBaseState
             playerControl.transform.rotation = Quaternion.Slerp(playerControl.transform.rotation, Quaternion.LookRotation(move),
                 turnSpeed);
         }
+
+        hiphop = Input.GetKeyDown(KeyCode.H);
+        talk = Input.GetKeyDown(KeyCode.T);
+        silly = Input.GetKeyDown(KeyCode.X);
+
     }
     
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        playerControl.characterAnimator.SetFloat("walkSpeed", move.magnitude);
+        playerControl.characterAnimator.SetFloat("walkSpeed",movementMagnitude );
         playerControl.Move(move);
     }
-
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (hiphop)
+        {
+            playerStateManager.ChangeState(playerControl.hipHopState);
+        }
+        if (talk)
+        {
+            playerStateManager.ChangeState(playerControl.talkingState);
+        }
+        else if (silly)
+        {
+            playerStateManager.ChangeState(playerControl.sillyDanceState);
+        }
+    }
     public override void Exit()
     {
         base.Exit();
-        move = Vector3.zero;
+
+        playerControl.ResetMoveParams();
     }
+    
+    
+    
 }
