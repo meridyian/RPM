@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SitState : PlayerBaseState
+public class SitState : AnimationState
 {
-    
     public SitState(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
@@ -16,25 +15,17 @@ public class SitState : PlayerBaseState
         playerControl.charController.enabled = false;
         playerControl.transform.position = Vector3.Lerp(playerControl.transform.position,
             playerControl.chairTransform.GetChild(0).transform.position, 5f);
-        playerControl.characterAnimator.SetBool("Sit",true);
+        playerControl.SetAnimationBool(playerControl.sitParam,true);
         
     }
 
     public override void Exit()
     {
         base.Exit();
-        playerControl.characterAnimator.SetBool("Sit",false);
-    }
-
-    public override void HandleInput()
-    {
-        base.HandleInput();
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            playerControl.FillChair = false;
-            playerControl.IsSitting = false;
-            playerControl.chairTransform.GetComponent<Chair>().DealSittingRpc(playerControl.FillChair);
-            playerStateManager.ChangeState(playerControl.movement);
-        }
+        playerControl.FillChair = false;
+        playerControl.IsSitting = false;
+        playerControl.chairTransform.GetComponent<Chair>().DealSittingRpc(playerControl.FillChair);
+        playerControl.SetAnimationBool(playerControl.sitParam,false);
+        
     }
 }

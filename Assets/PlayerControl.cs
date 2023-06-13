@@ -28,7 +28,7 @@ public class PlayerControl : NetworkBehaviour
     
     
     
-    
+    public int sitParam => Animator.StringToHash("Sit");
     //controllers
     public static PlayerControl Local { get; set; }
     public Animator characterAnimator;
@@ -161,6 +161,10 @@ public class PlayerControl : NetworkBehaviour
     public void ResetMoveParams()
     {
         characterAnimator.SetFloat("walkSpeed", 0f);
+    }
+    public void SetAnimationBool(int param, bool value)
+    {
+        characterAnimator.SetBool(param, value);
     }
 
     /*
