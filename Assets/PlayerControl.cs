@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq.Expressions;
 using Cinemachine;
 using Fusion;
 using UnityEngine;
@@ -14,6 +15,17 @@ public class PlayerControl : NetworkBehaviour
 
     private Vector3 velocity;
     private bool _jumpPressed;
+    
+    // state machine
+    public PlayerStateManager movementSM;
+    public HipHopState hipHopState;
+    public TalkingState talkingState;
+    public SillyDanceState sillyDanceState;
+    public Movement movement;
+    
+    
+    
+    
     
     //controllers
     public static PlayerControl Local { get; set; }
@@ -41,6 +53,15 @@ public class PlayerControl : NetworkBehaviour
 
     public override void Spawned()
     {
+        movementSM = new PlayerStateManager();
+
+        hipHopState = new HipHopState(this,movementSM);
+        talkingState = new TalkingState(this, movementSM);
+        sillyDanceState = new SillyDanceState(this, movementSM);
+        movement = new Movement(this, movementSM);
+        
+        movementSM.Initialize(movement);
+        
         IsStanding = true;
         if (Object.HasStateAuthority)
         {
@@ -128,17 +149,37 @@ public class PlayerControl : NetworkBehaviour
         Debug.Log("sitting animation will play");
     }
     
-    
+    public void TriggerAnimation(int param)
+    {
+        characterAnimator.SetTrigger(param);
+    }
+
+    public void Move(Vector3 move)
+    {
+        charController.Move(move* Runner.DeltaTime);
+    }
 
 
     public override void FixedUpdateNetwork()
     {
-        
         if (HasStateAuthority == false)
         {
             return;
         }
+        movementSM.CurrentState.HandleInput();
+        movementSM.CurrentState.PhysicsUpdate();
+        movementSM.CurrentState.Exit();
+        
+        
+    }
+    /*
+    public override void FixedUpdateNetwork()
+    {
+        
+        
 
+        
+        
         if (!IsSitting || IsStanding)
         {
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))*Runner.DeltaTime* PlayerSpeed;
@@ -155,18 +196,10 @@ public class PlayerControl : NetworkBehaviour
             charController.Move(move*5* Runner.DeltaTime);
             
         }
-        if (Input.GetKey(KeyCode.H))
-        {
-            StartCoroutine(HipHopAnimation());
-        }
-        if (Input.GetKey(KeyCode.T))
-        {
-            StartCoroutine(TalkingAnimation());
-        }
-        if (Input.GetKey(KeyCode.K))
-        {
-            StartCoroutine(SillyDanceAnimation());
-        }
+        
+        
+        
+
         
         if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed )
         {
@@ -181,6 +214,7 @@ public class PlayerControl : NetworkBehaviour
         
 
     }
+    */
     
     
     
@@ -188,24 +222,7 @@ public class PlayerControl : NetworkBehaviour
 
     //dance animations
     
-    public IEnumerator HipHopAnimation()
-    {
-        characterAnimator.SetBool("HipHop", true);
-        yield return new WaitForSeconds(0.5f);
-        characterAnimator.SetBool("HipHop", false);
-    }
-    public IEnumerator SillyDanceAnimation()
-    {
-        characterAnimator.SetBool("SillyDance", true);
-        yield return new WaitForSeconds(1f);
-        characterAnimator.SetBool("SillyDance", false);
-    }
-    public IEnumerator TalkingAnimation()
-    {
-        characterAnimator.SetBool("talking", true);
-        yield return new WaitForSeconds(3f);
-        characterAnimator.SetBool("talking", false);
-    }
+
     
     public IEnumerator SitToStandAnimation()
     {
