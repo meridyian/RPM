@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TalkingState : PlayerBaseState
+public class TalkingState : AnimationState
 {
 
     private int TalkParam = Animator.StringToHash("Talk");
@@ -12,9 +12,9 @@ public class TalkingState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-
         playerControl.TriggerAnimation(TalkParam);
-        playerStateManager.ChangeState(playerControl.movement);
+
     }
+    
     
 }

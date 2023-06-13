@@ -14,6 +14,7 @@ public class Movement : PlayerBaseState
     private float verticalInput;
     private Vector3 move;
 
+
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
@@ -22,7 +23,7 @@ public class Movement : PlayerBaseState
     {
         base.Enter();
         horizontalInput = verticalInput = 0.0f;
-
+        
         hiphop = false;
         talk = false;
         silly = false;
@@ -32,6 +33,8 @@ public class Movement : PlayerBaseState
     public override void HandleInput()
     {
         base.HandleInput();
+
+        Debug.Log("g");
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         
@@ -61,6 +64,10 @@ public class Movement : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (playerControl.FillChair)
+        {
+            playerStateManager.ChangeState(playerControl.sit);
+        }
         if (hiphop)
         {
             playerStateManager.ChangeState(playerControl.hipHopState);
@@ -69,10 +76,11 @@ public class Movement : PlayerBaseState
         {
             playerStateManager.ChangeState(playerControl.talkingState);
         }
-        else if (silly)
+        if (silly)
         {
             playerStateManager.ChangeState(playerControl.sillyDanceState);
         }
+        
     }
     public override void Exit()
     {

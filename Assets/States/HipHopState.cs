@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-public class HipHopState : PlayerBaseState
+public class HipHopState : AnimationState
 {
     private int HipHopParam = Animator.StringToHash("HipHop");
     
@@ -13,12 +14,8 @@ public class HipHopState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-
         playerControl.TriggerAnimation(HipHopParam);
-        playerStateManager.ChangeState(playerControl.movement);
     }
-    
-    
-    
+
     
 }

@@ -21,7 +21,9 @@ public class PlayerControl : NetworkBehaviour
     public HipHopState hipHopState;
     public TalkingState talkingState;
     public SillyDanceState sillyDanceState;
+    public SitState sit;
     public Movement movement;
+    
     
     
     
@@ -37,7 +39,7 @@ public class PlayerControl : NetworkBehaviour
     
     //movement
 
-    private Transform chairTransform;
+    public Transform chairTransform;
     [Networked] public bool IsSitting{ get; set; }
     [Networked] public bool IsStanding{ get; set; }
     
@@ -87,7 +89,7 @@ public class PlayerControl : NetworkBehaviour
         
         if (!Object.HasInputAuthority)
             return;
-        /*
+        
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -109,7 +111,6 @@ public class PlayerControl : NetworkBehaviour
                             FillChair = true; 
                             if(hit.transform.TryGetComponent<Chair>(out var chair ))
                                 chair.DealSittingRpc(FillChair);
-                            
                         }
                     }
                     Debug.Log("chair is full");
@@ -121,6 +122,7 @@ public class PlayerControl : NetworkBehaviour
         
         
         // oturuyor halinde olması lazım, is sitting güzel bunun için
+        /*
         if (IsSitting)
         {
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -230,17 +232,6 @@ public class PlayerControl : NetworkBehaviour
     
 
     
-    public IEnumerator SitToStandAnimation()
-    {
-        IsSitting = false;
-        characterAnimator.SetBool("Sit", false);
-        characterAnimator.SetBool("Stand", true);
-        yield return new WaitForSeconds(3f);
-        IsStanding = true;
-        yield return new WaitForSeconds(.75f);
-        charController.enabled = true;
-        //chair.DealSittingRpc(FillChair);
-
-    }
+    
 }
     
