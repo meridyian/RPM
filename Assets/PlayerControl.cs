@@ -100,20 +100,10 @@ public class PlayerControl : NetworkBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Chair"))
                 {
-                    Debug.Log("hit the chair");
                     if (!hit.transform.GetComponent<Chair>().IsChairFull)
                     {
                         chairTransform = hit.collider.transform;
                         sittingCanvas.gameObject.SetActive(true);
-                        // is sitting yerine sit gibi oturucak olmasına bakan bi bool yap canvasta yese basınca true olsun
-                        /*
-                        if (IsSitting)
-                        {
-                            Debug.Log("issitting" + IsSitting);
-                            if (hit.transform.TryGetComponent<Chair>(out var chair))
-                                chair.DealSittingRpc(IsSitting);
-                        }
-                        */
                     }
                     
                 }
