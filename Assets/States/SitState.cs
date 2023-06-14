@@ -13,10 +13,10 @@ public class SitState : AnimationState
     {
         base.Enter();
         // send rpc to say chairs are full
-        PlayerControl.playerInstance.chairTransform.GetComponent<Chair>().DealSittingRpc(PlayerControl.playerInstance.IsSitting);
+        PlayerControl.Local.chairTransform.GetComponent<Chair>().DealSittingRpc(PlayerControl.Local.IsSitting);
         playerControl.charController.enabled = false;
         playerControl.transform.position = Vector3.Lerp(playerControl.transform.position,
-            PlayerControl.playerInstance.chairTransform.GetChild(0).transform.position, 5f);
+            PlayerControl.Local.chairTransform.GetChild(0).transform.position, 5f);
         playerControl.SetAnimationBool(playerControl.sitParam,true);
         
     }

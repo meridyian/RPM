@@ -37,7 +37,7 @@ public class PlayerControl : NetworkBehaviour
 
     //check authorithy
     public string X;
-    public static PlayerControl playerInstance;
+
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class PlayerControl : NetworkBehaviour
         {
             Local = this;
             localCamera.transform.parent = null;
-            playerInstance = this;
+
         }
         else
         {

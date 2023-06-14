@@ -23,8 +23,8 @@ public class SittingCanvas : MonoBehaviour
     public void YesPressed()
     {
         yesPressed = true;
-        PlayerControl.playerInstance.IsSitting = true;
-        PlayerControl.playerInstance.chairTransform = FindObjectOfType<Chair>().gameObject.transform;
+        PlayerControl.Local.IsSitting = true;
+        PlayerControl.Local.chairTransform = FindObjectOfType<Chair>().gameObject.transform;
         gameObject.SetActive(false);
 
     }

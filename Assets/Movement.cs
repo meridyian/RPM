@@ -66,7 +66,7 @@ public class Movement : PlayerBaseState
     {
         base.LogicUpdate();
         Debug.Log(playerControl.IsSitting);
-        if (PlayerControl.playerInstance.IsSitting)
+        if (PlayerControl.Local.IsSitting)
         {
             
             playerStateManager.ChangeState(playerControl.sit);

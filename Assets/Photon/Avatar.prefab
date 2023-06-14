@@ -1080,16 +1080,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  rotationSpeed: 0.01
-  PlayerSpeed: 5
-  GravityValue: -9.81
-  _FillChair: 0
   characterAnimator: {fileID: 7085869693156313773}
   localCamera: {fileID: 4130356568288331437}
   charController: {fileID: 4228363932064979448}
   sittingCanvas: {fileID: 645543851}
+  chairTransform: {fileID: 0}
   _IsSitting: 0
-  _IsStanding: 0
   X: 
 --- !u!114 &3493079697479546314
 MonoBehaviour:
@@ -1119,8 +1115,8 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 000000008a18fce4b9abd9d327c98708047984ae54e27f299690be8b166615569245c3b9263db1ee058db248c6459eaee5f59d08
-  TriggerHashes: 00000000
+  StateHashes: 000000008a18fce4b9abd9d354e27f299690be8b166615569245c3b9263db1ee058db248c6459eaee5f59d082e463d616de80e62
+  TriggerHashes: 000000002e463d61f825e35e857a163f8c4c30e0
 --- !u!114 &4016050435097948253
 MonoBehaviour:
   m_ObjectHideFlags: 0
