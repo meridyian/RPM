@@ -12,10 +12,10 @@ public class SitState : AnimationState
     public override void Enter()
     {
         base.Enter();
-        playerControl.chairTransform.GetComponent<Chair>().DealSittingRpc(playerControl.IsSitting);
+        PlayerControl.playerInstance.chairTransform.GetComponent<Chair>().DealSittingRpc(PlayerControl.playerInstance.IsSitting);
         playerControl.charController.enabled = false;
         playerControl.transform.position = Vector3.Lerp(playerControl.transform.position,
-            playerControl.chairTransform.GetChild(0).transform.position, 5f);
+            PlayerControl.playerInstance.chairTransform.GetChild(0).transform.position, 5f);
         playerControl.SetAnimationBool(playerControl.sitParam,true);
         
     }

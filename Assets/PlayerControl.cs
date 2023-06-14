@@ -51,7 +51,6 @@ public class PlayerControl : NetworkBehaviour
         if(playerInstance != null) return;
         playerInstance = this;
         charController = GetComponent<CharacterController>();
-        
     }
 
     public override void Spawned()
