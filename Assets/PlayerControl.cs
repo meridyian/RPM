@@ -44,12 +44,14 @@ public class PlayerControl : NetworkBehaviour
 
     //check
     public string X;
+    public static PlayerControl playerInstance;
 
     private void Awake()
     {
+        if(playerInstance != null) return;
+        playerInstance = this;
         charController = GetComponent<CharacterController>();
-
-
+        
     }
 
     public override void Spawned()

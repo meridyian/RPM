@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using WebSocketSharp;
 
+
 public class SittingCanvas : MonoBehaviour
 {
     [Networked]
@@ -22,7 +23,7 @@ public class SittingCanvas : MonoBehaviour
     public void YesPressed()
     {
         yesPressed = true;
-        FindObjectOfType<PlayerControl>().IsSitting = true;
+        PlayerControl.playerInstance.IsSitting = true;
         gameObject.SetActive(false);
 
     }
