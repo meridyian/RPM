@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationState : PlayerBaseState
 {
-   
+    private int movementParam = Animator.StringToHash("movementParam");
     public AnimationState(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
@@ -17,9 +17,14 @@ public class AnimationState : PlayerBaseState
         {
             
             playerStateManager.ChangeState(playerControl.movement);
+            playerControl.TriggerAnimation(movementParam);
 
         }
     }
 
-    
+    public override void Exit()
+    {
+        base.Exit();
+        playerControl.TriggerAnimation(movementParam);
+    }
 }

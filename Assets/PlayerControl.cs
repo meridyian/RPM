@@ -7,15 +7,9 @@ using UnityEngine;
 
 public class PlayerControl : NetworkBehaviour
 {
-    [SerializeField] private float rotationSpeed = 0.01f;
-
-    public float PlayerSpeed = 5f;
-    public float GravityValue = -9.81f;
-
-    private Vector3 velocity;
-    private bool _jumpPressed;
-
-    // state machine
+    
+    
+    // statemanager and states
     public PlayerStateManager movementSM;
     public HipHopState hipHopState;
     public TalkingState talkingState;
@@ -26,7 +20,7 @@ public class PlayerControl : NetworkBehaviour
 
 
 
-
+    // will be called from movement
     public int sitParam => Animator.StringToHash("Sit");
 
     //controllers
@@ -37,34 +31,34 @@ public class PlayerControl : NetworkBehaviour
     public CharacterController charController;
     public Canvas sittingCanvas;
 
-    //movement
-
+    //  sitting position and sitting state check of player
     public Transform chairTransform;
     [Networked] public bool IsSitting { get; set; }
 
-    //check
+    //check authorithy
     public string X;
     public static PlayerControl playerInstance;
 
     private void Awake()
     {
-        
         charController = GetComponent<CharacterController>();
     }
 
     public override void Spawned()
     {
+        // instantiate states and state machnine manager
+        
         movementSM = new PlayerStateManager();
-
         hipHopState = new HipHopState(this, movementSM);
         talkingState = new TalkingState(this, movementSM);
         sillyDanceState = new SillyDanceState(this, movementSM);
         movement = new Movement(this, movementSM);
         sit = new SitState(this, movementSM);
 
+        
         movementSM.Initialize(movement);
 
-
+        
         if (Object.HasStateAuthority)
         {
             Local = this;
@@ -90,7 +84,7 @@ public class PlayerControl : NetworkBehaviour
         if (!Object.HasInputAuthority)
             return;
         
-        //canvas
+        // raycast for sitting 
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("left click is pressed");
@@ -126,6 +120,7 @@ public class PlayerControl : NetworkBehaviour
 
     }
 
+    
     public void ResetMoveParams()
     {
         characterAnimator.SetFloat("walkSpeed", 0f);
@@ -135,13 +130,13 @@ public class PlayerControl : NetworkBehaviour
     {
         characterAnimator.SetBool(param, value);
     }
-
-
+    
     public void TriggerAnimation(int param)
     {
         characterAnimator.SetTrigger(param);
     }
 
+    // move function for character controller, will be running on movement
     public void Move(Vector3 move)
     {
         charController.Move(move * 5 * Runner.DeltaTime);

@@ -19,7 +19,7 @@ public class SittingCanvas : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    
+    // instance is used since it was assigning the playercontrol as the one having state authority
     public void YesPressed()
     {
         yesPressed = true;

@@ -21,6 +21,8 @@ public class Chair : NetworkBehaviour
             X = Object.StateAuthority.ToString();
         }
     }
+    
+    // RPC for chair status
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void DealSittingRpc(bool sitting)
