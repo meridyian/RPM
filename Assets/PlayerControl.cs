@@ -41,8 +41,7 @@ public class PlayerControl : NetworkBehaviour
 
     public Transform chairTransform;
     [Networked] public bool IsSitting{ get; set; }
-    [Networked] public bool IsStanding{ get; set; }
-    
+
     //check
     public string X;
 
@@ -64,7 +63,7 @@ public class PlayerControl : NetworkBehaviour
         
         movementSM.Initialize(movement);
         
-        IsStanding = true;
+
         if (Object.HasStateAuthority)
         {
             Local = this;
@@ -106,11 +105,12 @@ public class PlayerControl : NetworkBehaviour
                         chairTransform = hit.collider.transform;
                         sittingCanvas.gameObject.SetActive(true);
                         // is sitting yerine sit gibi oturucak olmasına bakan bi bool yap canvasta yese basınca true olsun
-                        if (sittingCanvas.gameObject.GetComponent<SittingCanvas>().yesPressed)
+                        if (IsSitting)
                         {
-                            FillChair = true; 
+                            IsSitting = true;
+                            Debug.Log("issitting"+IsSitting);
                             if(hit.transform.TryGetComponent<Chair>(out var chair ))
-                                chair.DealSittingRpc(FillChair);
+                                chair.DealSittingRpc(IsSitting);
                         }
                     }
                     Debug.Log("chair is full");

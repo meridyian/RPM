@@ -64,10 +64,9 @@ public class Movement : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (playerControl.FillChair)
-        {
-            playerStateManager.ChangeState(playerControl.sit);
-        }
+        Debug.Log(playerControl.FillChair);
+        
+        
         if (hiphop)
         {
             playerStateManager.ChangeState(playerControl.hipHopState);
@@ -85,7 +84,6 @@ public class Movement : PlayerBaseState
     public override void Exit()
     {
         base.Exit();
-
         playerControl.ResetMoveParams();
     }
     

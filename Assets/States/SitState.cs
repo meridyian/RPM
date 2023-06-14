@@ -12,6 +12,7 @@ public class SitState : AnimationState
     {
         base.Enter();
         playerControl.IsSitting = true;
+        Debug.Log(playerControl.IsSitting);
         playerControl.charController.enabled = false;
         playerControl.transform.position = Vector3.Lerp(playerControl.transform.position,
             playerControl.chairTransform.GetChild(0).transform.position, 5f);
