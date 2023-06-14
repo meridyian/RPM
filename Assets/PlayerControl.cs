@@ -8,10 +8,9 @@ using UnityEngine;
 public class PlayerControl : NetworkBehaviour
 {
     [SerializeField] private float rotationSpeed = 0.01f;
+    
     public float PlayerSpeed = 5f;
-
     public float GravityValue = -9.81f;
-    [Networked] public bool FillChair{ get; set; }
 
     private Vector3 velocity;
     private bool _jumpPressed;
@@ -60,6 +59,7 @@ public class PlayerControl : NetworkBehaviour
         talkingState = new TalkingState(this, movementSM);
         sillyDanceState = new SillyDanceState(this, movementSM);
         movement = new Movement(this, movementSM);
+        sit = new SitState(this, movementSM);
         
         movementSM.Initialize(movement);
         

@@ -15,6 +15,7 @@ public class Movement : PlayerBaseState
     private Vector3 move;
 
 
+
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
@@ -23,7 +24,7 @@ public class Movement : PlayerBaseState
     {
         base.Enter();
         horizontalInput = verticalInput = 0.0f;
-        
+        playerControl.charController.enabled = true;
         hiphop = false;
         talk = false;
         silly = false;
@@ -64,8 +65,12 @@ public class Movement : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Debug.Log(playerControl.FillChair);
-        
+        Debug.Log(playerControl.IsSitting);
+        if (playerControl.IsSitting)
+        {
+            
+            playerStateManager.ChangeState(playerControl.sit);
+        }
         
         if (hiphop)
         {
