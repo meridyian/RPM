@@ -6,9 +6,7 @@ public class Movement : PlayerBaseState
 {
     protected float movementMagnitude;
     protected float turnSpeed =0.05f;
-    private bool hiphop;
-    private bool talk;
-    private bool silly;
+
 
     private float horizontalInput;
     private float verticalInput;
@@ -28,9 +26,7 @@ public class Movement : PlayerBaseState
         playerControl.TriggerAnimation(movementParam);
         horizontalInput = verticalInput = 0.0f;
         playerControl.charController.enabled = true;
-        hiphop = false;
-        talk = false;
-        silly = false;
+
     }
 
 

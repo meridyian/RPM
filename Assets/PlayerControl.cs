@@ -104,6 +104,7 @@ public class PlayerControl : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
+
         if (HasStateAuthority == false)
         {
             return;
@@ -130,6 +131,11 @@ public class PlayerControl : NetworkBehaviour
     {
         characterAnimator.SetTrigger(param);
     }
+    public void ChangeInteger(string state, int param)
+    {
+        characterAnimator.SetInteger(state, param);
+    }
+    
 
     // move function for character controller, will be running on movement
     public void Move(Vector3 move)

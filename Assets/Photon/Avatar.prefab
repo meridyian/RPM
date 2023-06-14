@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  danceortalkparam: 0
   characterAnimator: {fileID: 7085869693156313773}
   localCamera: {fileID: 4130356568288331437}
   charController: {fileID: 4228363932064979448}
@@ -1101,7 +1102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   Animator: {fileID: 7085869693156313773}
-  TotalWords: 2
+  TotalWords: 3
   SyncSettings: 79
   FloatAccuracy:
     _value: 0
@@ -1115,8 +1116,8 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 000000008a18fce4b9abd9d354e27f299690be8b166615569245c3b9263db1ee058db248c6459eaee5f59d082e463d616de80e62
-  TriggerHashes: 000000002e463d61f825e35e857a163f8c4c30e0
+  StateHashes: 000000008a18fce4b9abd9d3263db1ee058db248c6459eaee5f59d088aa448b810a3efc32e463d61dd0a275154e27f29857f08de16661556fcdf9172
+  TriggerHashes: 000000008c4c30e068f15f63
 --- !u!114 &4016050435097948253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,7 +1248,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4778514308170959644}
-  m_LocalRotation: {x: 0.11091122, y: -2.9742783e-14, z: 1.3679989e-14, w: 0.9938303}
+  m_LocalRotation: {x: 0.11091125, y: 0.000000027140796, z: -0.000000012310723, w: 0.9938304}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1568,7 +1569,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8388020988559288923}
-  m_LocalRotation: {x: 0.18888101, y: 0.000000026086306, z: -0.000000014411159, w: 0.98200005}
+  m_LocalRotation: {x: 0.18888098, y: -2.8083875e-14, z: 1.5317009e-14, w: 0.98200005}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

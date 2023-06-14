@@ -12,7 +12,7 @@ public class DanceTalkState : AnimationState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        playerControl.characterAnimator.SetInteger("DanceorTalk", playerControl.danceortalkparam);
+        playerControl.ChangeInteger("DanceorTalk", playerControl.danceortalkparam);
     }
     
 }
