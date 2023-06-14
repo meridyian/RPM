@@ -15,7 +15,8 @@ public class Movement : PlayerBaseState
     private Vector3 move;
 
     private int movementParam = Animator.StringToHash("movementParam");
-
+    private int dancetalkParam = Animator.StringToHash("DanceTalk");
+    
 
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
@@ -36,8 +37,6 @@ public class Movement : PlayerBaseState
     public override void HandleInput()
     {
         base.HandleInput();
-
-        Debug.Log("g");
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         
@@ -52,9 +51,26 @@ public class Movement : PlayerBaseState
                 turnSpeed);
         }
 
-        hiphop = Input.GetKeyDown(KeyCode.H);
-        talk = Input.GetKeyDown(KeyCode.T);
-        silly = Input.GetKeyDown(KeyCode.X);
+
+
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.X))
+        {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                playerControl.danceortalkparam = 0;
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                playerControl.danceortalkparam = 1;
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                playerControl.danceortalkparam = 2;
+            }
+            playerControl.TriggerAnimation(dancetalkParam);
+            playerStateManager.ChangeState(playerControl.dancetalkState);
+        }
+
 
     }
     
@@ -68,24 +84,12 @@ public class Movement : PlayerBaseState
     {
         base.LogicUpdate();
         Debug.Log(playerControl.IsSitting);
+        
         if (PlayerControl.Local.IsSitting)
         {
-            
             playerStateManager.ChangeState(playerControl.sit);
         }
         
-        if (hiphop)
-        {
-            playerStateManager.ChangeState(playerControl.hipHopState);
-        }
-        if (talk)
-        {
-            playerStateManager.ChangeState(playerControl.talkingState);
-        }
-        if (silly)
-        {
-            playerStateManager.ChangeState(playerControl.sillyDanceState);
-        }
         
     }
     public override void Exit()

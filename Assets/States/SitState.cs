@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SitState : AnimationState
 {
-    private int movementParam = Animator.StringToHash("movementParam");
     public SitState(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }
@@ -29,7 +28,7 @@ public class SitState : AnimationState
         var FullChair = false;
         playerControl.chairTransform.GetComponent<Chair>().DealSittingRpc(FullChair);
         playerControl.SetAnimationBool(playerControl.sitParam,false);
-        playerControl.TriggerAnimation(movementParam);
+
         
     }
 }

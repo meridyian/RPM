@@ -7,16 +7,13 @@ using UnityEngine;
 
 public class PlayerControl : NetworkBehaviour
 {
-    
-    
     // statemanager and states
     public PlayerStateManager movementSM;
-    public HipHopState hipHopState;
-    public TalkingState talkingState;
-    public SillyDanceState sillyDanceState;
+
     public SitState sit;
     public Movement movement;
-
+    public DanceTalkState dancetalkState;
+    public int danceortalkparam;
 
 
 
@@ -49,11 +46,9 @@ public class PlayerControl : NetworkBehaviour
         // instantiate states and state machnine manager
         
         movementSM = new PlayerStateManager();
-        hipHopState = new HipHopState(this, movementSM);
-        talkingState = new TalkingState(this, movementSM);
-        sillyDanceState = new SillyDanceState(this, movementSM);
         movement = new Movement(this, movementSM);
         sit = new SitState(this, movementSM);
+        dancetalkState = new DanceTalkState(this, movementSM);
 
         
         movementSM.Initialize(movement);
@@ -113,7 +108,7 @@ public class PlayerControl : NetworkBehaviour
         {
             return;
         }
-        movementSM.CurrentState.Enter();
+
         movementSM.CurrentState.HandleInput();
         movementSM.CurrentState.PhysicsUpdate();
         movementSM.CurrentState.LogicUpdate();
