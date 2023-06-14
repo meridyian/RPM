@@ -25,7 +25,6 @@ public class SittingCanvas : MonoBehaviour
         FindObjectOfType<PlayerControl>().IsSitting = true;
         gameObject.SetActive(false);
 
-        //chair.isEmpty = false;
     }
     
 

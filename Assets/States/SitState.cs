@@ -12,6 +12,7 @@ public class SitState : AnimationState
     public override void Enter()
     {
         base.Enter();
+        playerControl.chairTransform.GetComponent<Chair>().DealSittingRpc(playerControl.IsSitting);
         playerControl.charController.enabled = false;
         playerControl.transform.position = Vector3.Lerp(playerControl.transform.position,
             playerControl.chairTransform.GetChild(0).transform.position, 5f);
@@ -23,7 +24,10 @@ public class SitState : AnimationState
     {
         base.Exit();
         playerControl.IsSitting = false;
-        playerControl.chairTransform.GetComponent<Chair>().DealSittingRpc(playerControl.IsSitting);
+        var FullChair = false;
+        playerControl.chairTransform.GetComponent<Chair>().DealSittingRpc(FullChair);
+        Debug.Log("emptychair"+FullChair);
+        Debug.Log("ischairfull"+playerControl.chairTransform.GetComponent<Chair>().IsChairFull);
         playerControl.SetAnimationBool(playerControl.sitParam,false);
         playerControl.TriggerAnimation(movementParam);
         
