@@ -48,8 +48,7 @@ public class PlayerControl : NetworkBehaviour
 
     private void Awake()
     {
-        if(playerInstance != null) return;
-        playerInstance = this;
+        
         charController = GetComponent<CharacterController>();
     }
 
@@ -70,7 +69,7 @@ public class PlayerControl : NetworkBehaviour
         {
             Local = this;
             localCamera.transform.parent = null;
-
+            playerInstance = this;
         }
         else
         {
