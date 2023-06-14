@@ -113,7 +113,7 @@ public class PlayerControl : NetworkBehaviour
         {
             return;
         }
-
+        movementSM.CurrentState.Enter();
         movementSM.CurrentState.HandleInput();
         movementSM.CurrentState.PhysicsUpdate();
         movementSM.CurrentState.LogicUpdate();

@@ -14,6 +14,7 @@ public class Movement : PlayerBaseState
     private float verticalInput;
     private Vector3 move;
 
+    private int movementParam = Animator.StringToHash("movementParam");
 
 
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
@@ -23,6 +24,7 @@ public class Movement : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        playerControl.TriggerAnimation(movementParam);
         horizontalInput = verticalInput = 0.0f;
         playerControl.charController.enabled = true;
         hiphop = false;
