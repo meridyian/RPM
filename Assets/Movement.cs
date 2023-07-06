@@ -12,7 +12,7 @@ public class Movement : PlayerBaseState
     private float verticalInput;
     private Vector3 move;
 
-    private int movementParam = Animator.StringToHash("movementParam");
+
 
     
 
@@ -23,7 +23,7 @@ public class Movement : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        playerControl.TriggerAnimation(movementParam);
+
         horizontalInput = verticalInput = 0.0f;
         playerControl.charController.enabled = true;
 
@@ -74,6 +74,7 @@ public class Movement : PlayerBaseState
     {
         base.PhysicsUpdate();
         playerControl.characterAnimator.SetFloat("walkSpeed",movementMagnitude );
+        playerControl.TriggerAnimation(playerControl.movementParam);
         playerControl.Move(move);
     }
     public override void LogicUpdate()

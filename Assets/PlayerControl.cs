@@ -21,6 +21,7 @@ public class PlayerControl : NetworkBehaviour
     // will be called from movement
     public int sitParam => Animator.StringToHash("Sit");
     public int dancetalkParam = Animator.StringToHash("DanceTalk");
+    public int movementParam = Animator.StringToHash("movementParam");
 
     //controllers
     public static PlayerControl Local { get; set; }
