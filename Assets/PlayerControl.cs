@@ -14,11 +14,13 @@ public class PlayerControl : NetworkBehaviour
     public Movement movement;
     public DanceTalkState dancetalkState;
     public int danceortalkparam;
+    
 
 
 
     // will be called from movement
     public int sitParam => Animator.StringToHash("Sit");
+    public int dancetalkParam = Animator.StringToHash("DanceTalk");
 
     //controllers
     public static PlayerControl Local { get; set; }

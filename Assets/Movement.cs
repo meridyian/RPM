@@ -13,7 +13,7 @@ public class Movement : PlayerBaseState
     private Vector3 move;
 
     private int movementParam = Animator.StringToHash("movementParam");
-    private int dancetalkParam = Animator.StringToHash("DanceTalk");
+
     
 
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
@@ -63,7 +63,7 @@ public class Movement : PlayerBaseState
             {
                 playerControl.danceortalkparam = 2;
             }
-            playerControl.TriggerAnimation(dancetalkParam);
+            playerControl.SetAnimationBool(playerControl.dancetalkParam, true);
             playerStateManager.ChangeState(playerControl.dancetalkState);
         }
 
