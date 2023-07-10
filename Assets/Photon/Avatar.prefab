@@ -1081,12 +1081,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   danceortalkparam: 0
+  dancetalkParam: 1667232104
+  movementParam: -533705588
   characterAnimator: {fileID: 7085869693156313773}
   localCamera: {fileID: 4130356568288331437}
   charController: {fileID: 4228363932064979448}
   sittingCanvas: {fileID: 645543851}
   chairTransform: {fileID: 0}
   _IsSitting: 0
+  _IsTyping: 0
   X: 
 --- !u!114 &3493079697479546314
 MonoBehaviour:
@@ -1117,7 +1120,7 @@ MonoBehaviour:
     _inverse: 0
     _hash: -814817977
   StateHashes: 000000008a18fce4b9abd9d3263db1ee058db248c6459eaee5f59d088aa448b810a3efc32e463d61dd0a275154e27f29857f08de16661556fcdf9172
-  TriggerHashes: 000000008c4c30e068f15f63
+  TriggerHashes: 000000008c4c30e0
 --- !u!114 &4016050435097948253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,7 +1572,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8388020988559288923}
-  m_LocalRotation: {x: 0.18888098, y: -2.8083875e-14, z: 1.5317009e-14, w: 0.98200005}
+  m_LocalRotation: {x: 0.18888101, y: 0.000000026086306, z: -0.000000014411159, w: 0.98200005}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

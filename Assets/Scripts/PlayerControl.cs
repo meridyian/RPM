@@ -5,6 +5,7 @@ using Fusion;
 using UnityEngine;
 
 
+
 public class PlayerControl : NetworkBehaviour
 {
     // statemanager and states
@@ -14,9 +15,6 @@ public class PlayerControl : NetworkBehaviour
     public Movement movement;
     public DanceTalkState dancetalkState;
     public int danceortalkparam;
-    
-
-
 
     // will be called from movement
     public int sitParam => Animator.StringToHash("Sit");
@@ -34,6 +32,9 @@ public class PlayerControl : NetworkBehaviour
     //  sitting position and sitting state check of player
     public Transform chairTransform;
     [Networked] public bool IsSitting { get; set; }
+    [Networked] public bool IsTyping { get; set; }
+
+    
 
     //check authorithy
     public string X;
@@ -98,9 +99,13 @@ public class PlayerControl : NetworkBehaviour
                         sittingCanvas.gameObject.SetActive(true);
                     }
                     
+                    
                 }
+
+
             }
         }
+
         
 
     }

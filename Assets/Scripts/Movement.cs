@@ -33,14 +33,20 @@ public class Movement : PlayerBaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        verticalInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");
+        if (!PlayerControl.Local.IsTyping)
+        {
+            verticalInput = Input.GetAxis("Vertical");
+            horizontalInput = Input.GetAxis("Horizontal");
+        }
+
         
         move = new Vector3(horizontalInput, 0, verticalInput);
         move.Normalize();
         movementMagnitude = Mathf.Clamp01(move.magnitude);
         move = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) * move;
-        if (move != Vector3.zero)
+        
+        
+        if (move != Vector3.zero )
         {
             playerControl.transform.forward = move;
             playerControl.transform.rotation = Quaternion.Slerp(playerControl.transform.rotation, Quaternion.LookRotation(move),
@@ -48,13 +54,13 @@ public class Movement : PlayerBaseState
         }
 
 
-
         if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.X))
         {
             if (Input.GetKeyDown(KeyCode.H))
-            {
+            { 
                 playerControl.danceortalkparam = 0;
             }
+                
             if (Input.GetKeyDown(KeyCode.X))
             {
                 playerControl.danceortalkparam = 1;
@@ -66,6 +72,9 @@ public class Movement : PlayerBaseState
             playerControl.SetAnimationBool(playerControl.dancetalkParam, true);
             playerStateManager.ChangeState(playerControl.dancetalkState);
         }
+
+    
+       
 
 
     }
