@@ -14,12 +14,14 @@ public class AnimationState : PlayerBaseState
         base.LogicUpdate();
         var verticalInput = Input.GetAxis("Vertical");
         var horizontalInput = Input.GetAxis("Horizontal");
+
         if (verticalInput != 0 || horizontalInput != 0)
         {
             playerStateManager.ChangeState(playerControl.movement);
             playerControl.SetAnimationBool(playerControl.dancetalkParam, false);
-
+            
         }
+        
     }
     
     public override void Exit()

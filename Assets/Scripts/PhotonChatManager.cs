@@ -29,6 +29,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     public void UsernameOnValueChange(string valueIn)
     {
         // is attached to the username input field to keep track of the usernames passed in
+
         username = valueIn;
     }    
     
@@ -38,7 +39,6 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         // is attached to JoinChat button OnClick event
         isConnected = true;
         chatClient = new ChatClient(this);
-        
         // Fusion.Photon.Realtime.PhotonAppSettings.AppSettings instance şeklinde çekemezsin
         // if you call the Connect on Start you can not dynamically set your username 
         Fusion.Photon.Realtime.AppSettings settings = Fusion.Photon.Realtime.PhotonAppSettings.Instance.AppSettings;
@@ -79,12 +79,14 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             // clear the field
             chatField.text = "";
             currentChat = "";
+ 
         }
     }
     
     // attached to chatInput input field
     public void TypeChatOnValueChange(string valueIn)
     {
+        
         currentChat = valueIn;
     }
     #endregion PublicChat

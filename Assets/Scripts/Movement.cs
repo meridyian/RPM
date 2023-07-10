@@ -33,13 +33,10 @@ public class Movement : PlayerBaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        if (!PlayerControl.Local.IsTyping)
-        {
-            verticalInput = Input.GetAxis("Vertical");
-            horizontalInput = Input.GetAxis("Horizontal");
-        }
+        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
 
-        
+
         move = new Vector3(horizontalInput, 0, verticalInput);
         move.Normalize();
         movementMagnitude = Mathf.Clamp01(move.magnitude);
@@ -85,12 +82,12 @@ public class Movement : PlayerBaseState
         playerControl.characterAnimator.SetFloat("walkSpeed",movementMagnitude );
         playerControl.TriggerAnimation(playerControl.movementParam);
         playerControl.Move(move);
+        
     }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Debug.Log(playerControl.IsSitting);
-        
+
         if (PlayerControl.Local.IsSitting)
         {
             playerStateManager.ChangeState(playerControl.sit);
