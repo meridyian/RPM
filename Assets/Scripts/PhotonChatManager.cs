@@ -10,7 +10,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     ChatClient chatClient;
     
     //
-    [SerializeField] private GameObject joinChatButton;
+    [SerializeField] private GameObject usernamePanel;
     bool isConnected;
     [SerializeField] string username;
     
@@ -19,23 +19,36 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     string currentChat;
     [SerializeField] InputField chatField;
     [SerializeField] Text chatDisplay;
+
+    public static PhotonChatManager photonChatManager;
     
     // to keep track of private chat field
     string privateReceiver = "";
     
     // IChatClientListener is the interface applying the callbacks from chat
     // add mask to scroll view so that the chat is only displayed in scroll view
+    
+    public void Awake()
+    {
+        if (photonChatManager != null) return;
+        
+        photonChatManager = this;
+        
+    
+    }
 
     public void UsernameOnValueChange(string valueIn)
     {
         // is attached to the username input field to keep track of the usernames passed in
-
+        Debug.Log("user is typing username");
         username = valueIn;
+        
     }    
     
      // Start is called before the first frame update
     public void ChatConnectOnClick()
     {
+        usernamePanel.SetActive(false);
         // is attached to JoinChat button OnClick event
         isConnected = true;
         chatClient = new ChatClient(this);
@@ -44,9 +57,27 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         Fusion.Photon.Realtime.AppSettings settings = Fusion.Photon.Realtime.PhotonAppSettings.Instance.AppSettings;
         chatClient.Connect(settings.AppIdChat, settings.AppVersion, new AuthenticationValues(username));
         Debug.Log("Connecting");
+        SetPlayerName();
+
     }
 
+    public void SetPlayerName()
+    {
+        PlayerControl.Local.userName = username;
+        PlayerControl.Local.canMove = true;
+        Debug.Log(PlayerControl.Local.userName);
+    }
 
+    public void DisablePlayerMovement()
+    {
+        PlayerControl.Local.canMove = false;
+        PlayerControl.Local.characterAnimator.enabled = false;
+    }
+    public void EnablePlayerMovement()
+    {
+        PlayerControl.Local.canMove = true;
+        PlayerControl.Local.characterAnimator.enabled = true;
+    }
 
     
     // Update is called once per frame
@@ -113,7 +144,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void DebugReturn(DebugLevel level, string message)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("x");
     }
 
     public void OnDisconnected()
@@ -127,7 +158,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         // only able to connect to one region limitation
         Debug.Log("Connected");
         isConnected = true;
-        joinChatButton.SetActive(false);
+    
         // subscribing to a specific chatroom
         chatClient.Subscribe(new string[] { "RegionChannel" });
     }

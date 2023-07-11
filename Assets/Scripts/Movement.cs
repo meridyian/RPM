@@ -79,9 +79,15 @@ public class Movement : PlayerBaseState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        playerControl.characterAnimator.SetFloat("walkSpeed",movementMagnitude );
-        playerControl.TriggerAnimation(playerControl.movementParam);
-        playerControl.Move(move);
+        
+        if (PlayerControl.Local.canMove)
+        {
+            PlayerControl.Local.characterAnimator.enabled = true;
+            playerControl.characterAnimator.SetFloat("walkSpeed",movementMagnitude );
+            playerControl.TriggerAnimation(playerControl.movementParam);
+            playerControl.Move(move);
+        }
+
         
     }
     public override void LogicUpdate()

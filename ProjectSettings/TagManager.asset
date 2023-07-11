@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Chair
   - Chat
+  - inputfield
   layers:
   - Default
   - TransparentFX

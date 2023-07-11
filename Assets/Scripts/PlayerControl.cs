@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Linq.Expressions;
 using Cinemachine;
+using ExitGames.Client.Photon.StructWrapping;
 using Fusion;
+using Unity.VisualScripting;
 using UnityEngine;
-
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerControl : NetworkBehaviour
 {
     // statemanager and states
     public PlayerStateManager movementSM;
+    public bool canMove;
+    
+    
+    // USERNAME
+    
+    public string userName { get; set; }
 
     public SitState sit;
     public Movement movement;
@@ -34,6 +42,7 @@ public class PlayerControl : NetworkBehaviour
     [Networked] public bool IsSitting { get; set; }
     [Networked] public bool IsTyping { get; set; }
 
+    [SerializeField] GameObject usernamePanel;
     
 
     //check authorithy
@@ -48,16 +57,22 @@ public class PlayerControl : NetworkBehaviour
     public override void Spawned()
     {
         // instantiate states and state machnine manager
-        
+
+        usernamePanel.gameObject.SetActive(true);
+        characterAnimator.enabled = false;
         movementSM = new PlayerStateManager();
         movement = new Movement(this, movementSM);
         sit = new SitState(this, movementSM);
         dancetalkState = new DanceTalkState(this, movementSM);
 
-        
+        // add if username is set 
+
+
         movementSM.Initialize(movement);
 
-        
+
+
+      
         if (Object.HasStateAuthority)
         {
             Local = this;
@@ -86,6 +101,7 @@ public class PlayerControl : NetworkBehaviour
         // raycast for sitting 
         if (Input.GetMouseButtonDown(0))
         {
+            
             Debug.Log("left click is pressed");
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -98,16 +114,9 @@ public class PlayerControl : NetworkBehaviour
                         chairTransform = hit.collider.transform;
                         sittingCanvas.gameObject.SetActive(true);
                     }
-                    
-                    
                 }
-
-
             }
         }
-
-        
-
     }
 
     public override void FixedUpdateNetwork()
@@ -150,5 +159,6 @@ public class PlayerControl : NetworkBehaviour
     {
         charController.Move(move * 5 * Runner.DeltaTime);
     }
+    
 }
     
