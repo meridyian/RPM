@@ -2,15 +2,16 @@ using ExitGames.Client.Photon;
 using Fusion;
 using UnityEngine;
 using Photon.Chat;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 
-public class PhotonChatManager : MonoBehaviour, IChatClientListener
+public class PhotonChatManager : NetworkBehaviour, IChatClientListener
 {
     // chatclient should be initalized
     ChatClient chatClient;
     
     //
-    [SerializeField] private GameObject usernamePanel;
+
     bool isConnected;
     [SerializeField] string username;
     
@@ -37,18 +38,17 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     
     }
 
-    public void UsernameOnValueChange(string valueIn)
-    {
-        // is attached to the username input field to keep track of the usernames passed in
-        Debug.Log("user is typing username");
-        username = valueIn;
         
-    }    
     
      // Start is called before the first frame update
     public void ChatConnectOnClick()
     {
-        usernamePanel.SetActive(false);
+        if (Object.HasStateAuthority)
+        {
+            username = FindObjectOfType<PlayerData>()._userName;
+
+        }
+
         // is attached to JoinChat button OnClick event
         isConnected = true;
         chatClient = new ChatClient(this);
@@ -57,31 +57,16 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         Fusion.Photon.Realtime.AppSettings settings = Fusion.Photon.Realtime.PhotonAppSettings.Instance.AppSettings;
         chatClient.Connect(settings.AppIdChat, settings.AppVersion, new AuthenticationValues(username));
         Debug.Log("Connecting");
-        SetPlayerName();
 
-    }
 
-    public void SetPlayerName()
-    {
-        PlayerControl.Local.userName = username;
-        PlayerControl.Local.canMove = true;
-        Debug.Log(PlayerControl.Local.userName);
-    }
-
-    public void DisablePlayerMovement()
-    {
-        PlayerControl.Local.canMove = false;
-        PlayerControl.Local.characterAnimator.enabled = false;
-    }
-    public void EnablePlayerMovement()
-    {
-        PlayerControl.Local.canMove = true;
-        PlayerControl.Local.characterAnimator.enabled = true;
     }
 
     
+    
+
+    
     // Update is called once per frame
-    void Update()
+    public  override void FixedUpdateNetwork()
     {
         // if you call the service before connecting, it throws an error. 
         // check connection state
