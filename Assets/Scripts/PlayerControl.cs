@@ -42,7 +42,6 @@ public class PlayerControl : NetworkBehaviour
     [Networked] public bool IsSitting { get; set; }
     [Networked] public bool IsTyping { get; set; }
 
-    [SerializeField] GameObject usernamePanel;
     
 
     //check authorithy
@@ -58,8 +57,8 @@ public class PlayerControl : NetworkBehaviour
     {
         // instantiate states and state machnine manager
 
-        usernamePanel.gameObject.SetActive(true);
-        characterAnimator.enabled = false;
+        //usernamePanel.gameObject.SetActive(true);
+        //characterAnimator.enabled = false;
         movementSM = new PlayerStateManager();
         movement = new Movement(this, movementSM);
         sit = new SitState(this, movementSM);
@@ -91,6 +90,7 @@ public class PlayerControl : NetworkBehaviour
         if (Object != null)
         {
             X = Object.StateAuthority.ToString();
+
         }
 
         //input authority only belongs to host, check if yo are the host

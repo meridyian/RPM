@@ -1247,7 +1247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &796165575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1673,8 +1673,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.3028493, y: 2.1526802e-21, z: -6.840622e-22, w: 0.9530385}
-  m_LocalPosition: {x: -1.3552527e-20, y: 2.614, z: -3}
+  m_LocalRotation: {x: 0.1835328, y: 0.7580949, z: -0.24090245, w: 0.5775586}
+  m_LocalPosition: {x: 1000.40405, y: 2.614, z: -278.47705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2880,6 +2880,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763629079}
+  - component: {fileID: 1763629080}
+  - component: {fileID: 1763629081}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -2902,6 +2904,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763629080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763629078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 1
+  AllowStateAuthorityOverride: 0
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 3b68956dc67b472781ab674a8fa3f63e
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours:
+  - {fileID: 1763629081}
+--- !u!114 &1763629081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763629078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7241256bf7f7392428e3f6d3cba93968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 4228363932064979428, guid: 1a72d583cf64f420397da7c6fbd86408, type: 3}
 --- !u!1 &1817503927
 GameObject:
   m_ObjectHideFlags: 0
@@ -3235,7 +3274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2062835251
 Transform:
   m_ObjectHideFlags: 0

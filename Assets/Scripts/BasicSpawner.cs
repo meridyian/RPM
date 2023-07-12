@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 
 
-public class BasicSpawner : SimulationBehaviour,IPlayerJoined
+public class BasicSpawner : SimulationBehaviour,ISpawned
 {
     //[SerializeField] private NetworkPrefabRef _playerPrefab;
     [SerializeField] GameObject _playerPrefab;
@@ -41,5 +41,9 @@ public class BasicSpawner : SimulationBehaviour,IPlayerJoined
         
     }
     */
-    
+
+    public void Spawned()
+    {
+        throw new NotImplementedException();
+    }
 }
