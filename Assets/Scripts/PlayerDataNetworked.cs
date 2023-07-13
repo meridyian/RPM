@@ -12,6 +12,7 @@ public class PlayerDataNetworked : NetworkBehaviour
     public string UserName { get;  set; }
     
     public Text _playernameEntryText;
+    private GameManager _gameManager;
     
     public override void Spawned()
     {
@@ -21,7 +22,19 @@ public class PlayerDataNetworked : NetworkBehaviour
             var userName = FindObjectOfType<PlayerData>().GetUserName();
             DealNameRpc(userName);
             _playernameEntryText.text = UserName;
+
         }
+
+        /*
+        foreach (PlayerRef player in Runner.ActivePlayers)
+        {
+ 
+            Debug.Log(plobj.GetComponent<PlayerDataNetworked>().UserName);
+        }
+        //_gameManager = FindObjectOfType<GameManager>();
+        //_gameManager.AddPlayer(Object.InputAuthority, this);
+*/
+        
     }
 
     private static void UsernameChanged(Changed<PlayerDataNetworked> changed)

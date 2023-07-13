@@ -1,19 +1,22 @@
+using System;
+using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using Fusion;
 using UnityEngine;
 using Photon.Chat;
 using Unity.VisualScripting;
+using UnityEngine.Networking.PlayerConnection;
 using UnityEngine.UI;
 
 public class PhotonChatManager : NetworkBehaviour, IChatClientListener
 {
     // chatclient should be initalized
     ChatClient chatClient;
-    
     //
-
     bool isConnected;
     [SerializeField] string username;
+    
+    // hold the list of online players and usernames 
     
     // chat setup
     [SerializeField] GameObject chatPanel;
@@ -32,22 +35,13 @@ public class PhotonChatManager : NetworkBehaviour, IChatClientListener
     public void Awake()
     {
         if (photonChatManager != null) return;
-        
         photonChatManager = this;
         
-    
     }
-
-        
     
      // Start is called before the first frame update
     public void ChatConnectOnClick()
     {
-        if (Object.HasStateAuthority)
-        {
-            username = FindObjectOfType<PlayerData>()._userName;
-
-        }
 
         // is attached to JoinChat button OnClick event
         isConnected = true;
@@ -57,14 +51,13 @@ public class PhotonChatManager : NetworkBehaviour, IChatClientListener
         Fusion.Photon.Realtime.AppSettings settings = Fusion.Photon.Realtime.PhotonAppSettings.Instance.AppSettings;
         chatClient.Connect(settings.AppIdChat, settings.AppVersion, new AuthenticationValues(username));
         Debug.Log("Connecting");
-
-
+        
     }
+    
+    // set the username
+    
 
-    
-    
 
-    
     // Update is called once per frame
     public  override void FixedUpdateNetwork()
     {
