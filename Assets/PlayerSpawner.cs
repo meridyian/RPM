@@ -26,7 +26,6 @@ public class PlayerSpawner : SimulationBehaviour, ISpawned
             // if playername is given, set the playername and spawn the player
             Runner.Spawn(_playerPrefab, new Vector3(0, 0.5f, 0), Quaternion.identity, player);
             
-            
         }
     }
     

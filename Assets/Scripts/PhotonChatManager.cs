@@ -4,6 +4,7 @@ using ExitGames.Client.Photon;
 using Fusion;
 using UnityEngine;
 using Photon.Chat;
+using ReadyPlayerMe.WebView;
 using Unity.VisualScripting;
 using UnityEngine.Networking.PlayerConnection;
 using UnityEngine.UI;
@@ -42,7 +43,14 @@ public class PhotonChatManager : NetworkBehaviour, IChatClientListener
      // Start is called before the first frame update
     public void ChatConnectOnClick()
     {
-
+        /*
+        if (Object.HasStateAuthority)
+        {
+             username = PlayerData.Instance._userName;
+          
+        }
+        */
+        username = PlayerData.Instance._userName;
         // is attached to JoinChat button OnClick event
         isConnected = true;
         chatClient = new ChatClient(this);

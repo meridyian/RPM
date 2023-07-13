@@ -13,6 +13,15 @@ public class PlayerDataNetworked : NetworkBehaviour
     
     public Text _playernameEntryText;
     private GameManager _gameManager;
+    public static PlayerDataNetworked NetworkedDataInstance;
+
+    private void Awake()
+    {
+        if (NetworkedDataInstance == null)
+        {
+            NetworkedDataInstance = this;
+        }
+    }
     
     public override void Spawned()
     {
@@ -22,7 +31,7 @@ public class PlayerDataNetworked : NetworkBehaviour
             var userName = FindObjectOfType<PlayerData>().GetUserName();
             DealNameRpc(userName);
             _playernameEntryText.text = UserName;
-
+            
         }
 
         /*
@@ -47,5 +56,7 @@ public class PlayerDataNetworked : NetworkBehaviour
     {
         UserName = name;
     }
+    
+    
 
 }
