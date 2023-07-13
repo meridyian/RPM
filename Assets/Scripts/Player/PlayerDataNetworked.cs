@@ -12,7 +12,7 @@ public class PlayerDataNetworked : NetworkBehaviour
     public string UserName { get;  set; }
     
     public Text _playernameEntryText;
-    private GameManager _gameManager;
+
     public static PlayerDataNetworked NetworkedDataInstance;
 
     private void Awake()
@@ -34,15 +34,6 @@ public class PlayerDataNetworked : NetworkBehaviour
             
         }
 
-        /*
-        foreach (PlayerRef player in Runner.ActivePlayers)
-        {
- 
-            Debug.Log(plobj.GetComponent<PlayerDataNetworked>().UserName);
-        }
-        //_gameManager = FindObjectOfType<GameManager>();
-        //_gameManager.AddPlayer(Object.InputAuthority, this);
-*/
         
     }
 
