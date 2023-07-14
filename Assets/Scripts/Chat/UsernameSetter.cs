@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,27 @@ public class UsernameSetter : MonoBehaviour
     [SerializeField] private string _gameSceneName = null;
     
     private NetworkRunner _runnerInstance;
+    public GameObject joinButton;
+
+
+    public void Start()
+    {
+        JoinButtonTracker();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.Return))
+        {
+            StartSharedSession();
+        }
+    }
+
+    private void JoinButtonTracker()
+    {
+
+        joinButton.GetComponent<Button>().onClick.AddListener(StartSharedSession);
+    }
 
     public void StartSharedSession()
     {
