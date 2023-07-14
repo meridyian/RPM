@@ -308,7 +308,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 121946437}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 121946434}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 415827447}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &121946437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,8 +566,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchoredPosition: {x: -2.2092972, y: 1.0139999}
+  m_SizeDelta: {x: -15.5814, y: -9.9721}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &352707537
 MonoBehaviour:
@@ -750,7 +774,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 415827450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 415827447}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 121946434}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &415827450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,8 +872,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0001, y: 140.09616}
-  m_SizeDelta: {x: 219.0931, y: 392.5043}
+  m_AnchoredPosition: {x: 0.000006914139, y: 137.8893}
+  m_SizeDelta: {x: 197.21, y: 384.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425579416
 MonoBehaviour:
@@ -1057,7 +1105,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1817503928}
-  - {fileID: 1466222356}
+  - {fileID: 573206084}
   m_Father: {fileID: 102465291}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1066,6 +1114,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &573206083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 573206084}
+  - component: {fileID: 573206085}
+  m_Layer: 5
+  m_Name: VoiceChatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &573206084
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573206083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1466222356}
+  m_Father: {fileID: 505452294}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &573206085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573206083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fee141ff60b41b469779889630830bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VoiceOnButton: {fileID: 415827447}
+  VoiceOffButton: {fileID: 121946434}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,8 +1295,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchoredPosition: {x: 1.0859, y: -0.31809998}
+  m_SizeDelta: {x: -10.6906, y: -7.4163}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &746954879
 MonoBehaviour:
@@ -1350,6 +1450,7 @@ GameObject:
   - component: {fileID: 791178133}
   - component: {fileID: 791178132}
   - component: {fileID: 791178131}
+  - component: {fileID: 791178134}
   m_Layer: 5
   m_Name: ToInput
   m_TagString: inputfield
@@ -1497,6 +1598,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791178129}
   m_CullTransparentMesh: 1
+--- !u!114 &791178134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791178129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cce9e6c5e610449bd052e3f9c333c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &816510728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,8 +1896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.5122, y: 0.4196}
-  m_SizeDelta: {x: 203.0383, y: 96.5471}
+  m_AnchoredPosition: {x: -0.000086784, y: 0.0012171}
+  m_SizeDelta: {x: 214.69, y: 106.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1060224995
 MonoBehaviour:
@@ -1959,6 +2072,7 @@ GameObject:
   - component: {fileID: 1092698506}
   - component: {fileID: 1092698505}
   - component: {fileID: 1092698504}
+  - component: {fileID: 1092698507}
   m_Layer: 5
   m_Name: ChatInput
   m_TagString: inputfield
@@ -2106,6 +2220,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092698502}
   m_CullTransparentMesh: 1
+--- !u!114 &1092698507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092698502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cce9e6c5e610449bd052e3f9c333c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1119003085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,8 +2295,8 @@ RectTransform:
   m_Children:
   - {fileID: 415827448}
   - {fileID: 121946435}
-  m_Father: {fileID: 505452294}
-  m_RootOrder: 1
+  m_Father: {fileID: 573206084}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2322,8 +2448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.288498, y: 33.507034}
-  m_SizeDelta: {x: 214.6857, y: 106.8882}
+  m_AnchoredPosition: {x: -13.288498, y: 31.868301}
+  m_SizeDelta: {x: 214.6857, y: 110.1656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1523863781
 MonoBehaviour:
@@ -2345,7 +2471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2696,8 +2822,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchoredPosition: {x: 1.0858991, y: -0.31809998}
+  m_SizeDelta: {x: -10.690598, y: -7.416298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1735194112
 MonoBehaviour:
@@ -2853,7 +2979,6 @@ GameObject:
   - component: {fileID: 1817503928}
   - component: {fileID: 1817503930}
   - component: {fileID: 1817503929}
-  - component: {fileID: 1817503931}
   m_Layer: 5
   m_Name: ChatPannel
   m_TagString: Untagged
@@ -2921,18 +3046,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817503927}
   m_CullTransparentMesh: 1
---- !u!114 &1817503931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817503927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59cce9e6c5e610449bd052e3f9c333c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1874969263
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,7 +3283,6 @@ GameObject:
   - component: {fileID: 2062835251}
   - component: {fileID: 2062835252}
   - component: {fileID: 2062835253}
-  - component: {fileID: 2062835254}
   m_Layer: 0
   m_Name: ChatManager
   m_TagString: Untagged
@@ -3235,15 +3347,3 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 2062835252}
   SimulationBehaviours: []
---- !u!114 &2062835254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062835249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59cce9e6c5e610449bd052e3f9c333c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

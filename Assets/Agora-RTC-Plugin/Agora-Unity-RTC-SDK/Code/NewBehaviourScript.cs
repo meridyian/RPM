@@ -12,9 +12,9 @@ using Agora.Rtc;
 public class NewBehaviourScript : MonoBehaviour
 {
 
-    private string _appID = "f8a7883623ad4990817c6dc33b74ff29";
+    private string _appID = "08732cff0aa64ae2b6f73cb0b3cae713";
     private string _channelName = "x_channel";
-    private string _token = "007eJxTYCjaWbrs8oVEyeCVBhHxF29Pq55vurM+7tndRVsNl2ieerlPgSHNItHcwsLYzMg4McXE0tLAwtA82Swl2dg4ydwkLc3IspFhY0pDICPDmzfHGBihEMTnZKiIT85IzMtLzWFgAAC2+iRF";
+    //private string _token = "007eJxTYCjaWbrs8oVEyeCVBhHxF29Pq55vurM+7tndRVsNl2ieerlPgSHNItHcwsLYzMg4McXE0tLAwtA82Swl2dg4ydwkLc3IspFhY0pDICPDmzfHGBihEMTnZKiIT85IzMtLzWFgAAC2+iRF";
     
     //wrapper to AgoraSDK 
     internal IRtcEngine RtcEngine;
@@ -96,7 +96,7 @@ public class NewBehaviourScript : MonoBehaviour
         // Sets the user role ad broadcaster.
         RtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
         // Joins a channel.
-        RtcEngine.JoinChannel(_token, _channelName);
+        RtcEngine.JoinChannel(null, _channelName);
         Debug.Log("player joined to chat");
     }
 
