@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,19 +12,20 @@ using Agora.Rtc;
 public class NewBehaviourScript : MonoBehaviour
 {
 
+    private string _appID = "f8a7883623ad4990817c6dc33b74ff29";
+    private string _channelName = "x_channel";
+    private string _token = "007eJxTYCjaWbrs8oVEyeCVBhHxF29Pq55vurM+7tndRVsNl2ieerlPgSHNItHcwsLYzMg4McXE0tLAwtA82Swl2dg4ydwkLc3IspFhY0pDICPDmzfHGBihEMTnZKiIT85IzMtLzWFgAAC2+iRF";
+    
+    //wrapper to AgoraSDK 
+    internal IRtcEngine RtcEngine;
+    public GameObject VoiceOnButton;
+    public GameObject VoiceOffButton;
+    
+    
     
 #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
     private ArrayList permissionList = new ArrayList() { Permission.Microphone };
 #endif
-    
-    private string _appID = "f8a7883623ad4990817c6dc33b74ff29";
-    private string _channelName = "x_channel";
-    private string _token = "007eJxTYFjFbs4amX2AO8Yx6lRm2aHYR09+F81fF52Q08b3agvvfV0FhjSLRHMLC2MzI+PEFBNLSwMLQ/Nks5RkY+Mkc5O0NCNLC+a1KQ2BjAw/H29nYmSAQBCfk6EiPjkjMS8vNYeBAQCweyEp";
-    
-    //wrapper to AgoraSDK 
-    internal IRtcEngine RtcEngine;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -37,16 +39,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         CheckPermissions();
     }
-    void OnApplicationQuit()
-    {
-        if (RtcEngine != null)
-        {
-            Leave();
-            RtcEngine.Dispose();
-            RtcEngine = null;
-        }
-    }
-
+    
     private void CheckPermissions() {
 #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
     foreach (string permission in permissionList)
@@ -57,13 +50,26 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 #endif
+
+    void OnApplicationQuit()
+    {
+        if (RtcEngine != null)
+        {
+            Leave();
+            RtcEngine.Dispose();
+            RtcEngine = null;
+        }
+    }
+
+    
     }
     private void SetupUI()
     {
-        GameObject go = GameObject.Find("Leave");
-        go.GetComponent<Button>().onClick.AddListener(Leave);
-        go = GameObject.Find("Join");
-        go.GetComponent<Button>().onClick.AddListener(Join);
+        GameObject voiceonBut = VoiceOnButton;
+        voiceonBut.GetComponent<Button>().onClick.AddListener(Join);
+        GameObject voiceoffBut = VoiceOffButton;
+        voiceoffBut.GetComponent<Button>().onClick.AddListener(Leave);
+        
     }
 
 
@@ -91,6 +97,7 @@ public class NewBehaviourScript : MonoBehaviour
         RtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
         // Joins a channel.
         RtcEngine.JoinChannel(_token, _channelName);
+        Debug.Log("player joined to chat");
     }
 
     public void Leave()
@@ -99,6 +106,7 @@ public class NewBehaviourScript : MonoBehaviour
         RtcEngine.LeaveChannel();
         // Disable the audio modules.
         RtcEngine.DisableAudio();
+        Debug.Log("player left from the chat");
     }
 
     internal class UserEventHandler : IRtcEngineEventHandler
@@ -113,6 +121,7 @@ public class NewBehaviourScript : MonoBehaviour
         // This callback is triggered when the local user joins the channel.
         public override void OnJoinChannelSuccess(RtcConnection connection, int elapsed)
         {
+            Debug.Log("successful conection");
         }
     }
 
