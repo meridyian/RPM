@@ -23,6 +23,7 @@ public class PhotonChatManager : NetworkBehaviour, IChatClientListener
     [SerializeField] GameObject chatPanel;
     string currentChat;
     [SerializeField] InputField chatField;
+    [SerializeField] InputField privateUserField;
     [SerializeField] Text chatDisplay;
 
     public static PhotonChatManager photonChatManager;
@@ -62,9 +63,6 @@ public class PhotonChatManager : NetworkBehaviour, IChatClientListener
         
     }
     
-    // set the username
-    
-
 
     // Update is called once per frame
     public  override void FixedUpdateNetwork()
@@ -200,6 +198,12 @@ public class PhotonChatManager : NetworkBehaviour, IChatClientListener
     public void OnUserUnsubscribed(string channel, string user)
     {
         throw new System.NotImplementedException();
+    }
+
+    public void ClearFields()
+    {
+        privateUserField.text = "";
+        chatField.text = "";
     }
 }
 

@@ -1025,6 +1025,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2062835252}
+        m_TargetAssemblyTypeName: PhotonChatManager, Assembly-CSharp
+        m_MethodName: ClearFields
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &456837665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3274,6 +3286,7 @@ MonoBehaviour:
   username: 
   chatPanel: {fileID: 1523863779}
   chatField: {fileID: 1092698504}
+  privateUserField: {fileID: 791178131}
   chatDisplay: {fileID: 425579416}
 --- !u!114 &2062835253
 MonoBehaviour:
