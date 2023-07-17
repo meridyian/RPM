@@ -14,7 +14,8 @@ public class Movement : PlayerBaseState
 
 
 
-    
+
+
 
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
@@ -70,9 +71,11 @@ public class Movement : PlayerBaseState
             playerStateManager.ChangeState(playerControl.dancetalkState);
         }
 
-    
-       
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerControl.isJumping = true;
+            playerStateManager.ChangeState(playerControl.jumpState);
+        }
 
     }
     

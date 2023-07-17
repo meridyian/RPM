@@ -22,12 +22,17 @@ public class PlayerControl : NetworkBehaviour
     public SitState sit;
     public Movement movement;
     public DanceTalkState dancetalkState;
+    public JumpState jumpState;
     public int danceortalkparam;
 
     // will be called from movement
     public int sitParam => Animator.StringToHash("Sit");
     public int dancetalkParam = Animator.StringToHash("DanceTalk");
     public int movementParam = Animator.StringToHash("movementParam");
+    public int jump = Animator.StringToHash("jump");
+
+    public bool isJumping;
+    
 
     //controllers
     public static PlayerControl Local { get; set; }
@@ -63,6 +68,7 @@ public class PlayerControl : NetworkBehaviour
         movement = new Movement(this, movementSM);
         sit = new SitState(this, movementSM);
         dancetalkState = new DanceTalkState(this, movementSM);
+        jumpState = new JumpState(this, movementSM);
 
         // add if username is set 
 
