@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1347,6 +1347,7 @@ GameObject:
   - component: {fileID: 791178133}
   - component: {fileID: 791178132}
   - component: {fileID: 791178131}
+  - component: {fileID: 791178134}
   m_Layer: 5
   m_Name: ToInput
   m_TagString: inputfield
@@ -1432,19 +1433,7 @@ MonoBehaviour:
       m_Calls: []
   m_OnDidEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1876127016}
-        m_TargetAssemblyTypeName: EnableMovement, Assembly-CSharp
-        m_MethodName: OnInputFieldEndEdit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1506,6 +1495,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791178129}
   m_CullTransparentMesh: 1
+--- !u!114 &791178134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791178129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cce9e6c5e610449bd052e3f9c333c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &816510728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,6 +1969,7 @@ GameObject:
   - component: {fileID: 1092698506}
   - component: {fileID: 1092698505}
   - component: {fileID: 1092698504}
+  - component: {fileID: 1092698507}
   m_Layer: 5
   m_Name: ChatInput
   m_TagString: inputfield
@@ -2053,19 +2055,7 @@ MonoBehaviour:
       m_Calls: []
   m_OnDidEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1876127016}
-        m_TargetAssemblyTypeName: EnableMovement, Assembly-CSharp
-        m_MethodName: OnInputFieldEndEdit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2127,6 +2117,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092698502}
   m_CullTransparentMesh: 1
+--- !u!114 &1092698507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092698502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cce9e6c5e610449bd052e3f9c333c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1119003085
 GameObject:
   m_ObjectHideFlags: 0
@@ -3117,7 +3119,6 @@ GameObject:
   - component: {fileID: 1876127013}
   - component: {fileID: 1876127015}
   - component: {fileID: 1876127014}
-  - component: {fileID: 1876127016}
   m_Layer: 5
   m_Name: InputFieldPanel
   m_TagString: Untagged
@@ -3185,18 +3186,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876127012}
   m_CullTransparentMesh: 1
---- !u!114 &1876127016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876127012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59cce9e6c5e610449bd052e3f9c333c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2049637861
 GameObject:
   m_ObjectHideFlags: 0

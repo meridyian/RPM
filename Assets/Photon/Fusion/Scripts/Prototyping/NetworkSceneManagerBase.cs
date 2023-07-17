@@ -262,7 +262,7 @@ namespace Fusion {
       } else if (!finishCalled) {
         LogError($"Failed to switch scenes: SwitchScene implementation did not invoke finished delegate");
       } else {
-        Runner.RegisterSceneObjects(sceneObjects.Values);
+         Runner.RegisterSceneObjects(sceneObjects.Values);
         Runner.InvokeSceneLoadDone();
       }
     }
