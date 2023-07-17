@@ -12,9 +12,10 @@ public class Movement : PlayerBaseState
     private float verticalInput;
     private Vector3 move;
 
+    public float JumpForce = 5f;
+    public float GravityValue = -9.81f;
+    private bool _jumpPressed;
 
-
-    
 
     public Movement(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
@@ -70,10 +71,15 @@ public class Movement : PlayerBaseState
             playerStateManager.ChangeState(playerControl.dancetalkState);
         }
 
-    
-       
+        if (Input.GetButtonDown("Jump"))
+        {
+            _jumpPressed = true;
+            Debug.Log("jump pressed");
+        }
 
+        _jumpPressed = false;
 
+        
     }
     
     public override void PhysicsUpdate()
@@ -98,7 +104,13 @@ public class Movement : PlayerBaseState
         {
             playerStateManager.ChangeState(playerControl.sit);
         }
-        
+
+        if (_jumpPressed)
+        {
+            playerControl.SetAnimationBool(playerControl.jumpParam, true);
+
+            
+        }
         
     }
     public override void Exit()
