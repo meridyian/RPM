@@ -67,15 +67,17 @@ public class Movement : PlayerBaseState
             {
                 playerControl.danceortalkparam = 2;
             }
-            playerControl.SetAnimationBool(playerControl.dancetalkParam, true);
+            playerControl._networkedMechanimAnim.Animator.SetBool(playerControl.dancetalkParam, true);
             playerStateManager.ChangeState(playerControl.dancetalkState);
         }
 
         if (Input.GetButtonDown("Jump"))
         {
             _jumpPressed = true;
+            //playerControl._networkedMechanimAnim.SetTrigger(playerControl.movementParam);
             Debug.Log("jump pressed");
             playerControl._networkedMechanimAnim.SetTrigger("jump");
+            
         }
 
         _jumpPressed = false;
@@ -90,7 +92,7 @@ public class Movement : PlayerBaseState
         if (PlayerControl.Local.canMove)
         {
             PlayerControl.Local.characterAnimator.enabled = true;
-            playerControl.characterAnimator.SetFloat("walkSpeed",movementMagnitude );
+            playerControl._networkedMechanimAnim.Animator.SetFloat("walkSpeed",movementMagnitude );
             playerControl.TriggerAnimation(playerControl.movementParam);
             playerControl.Move(move);
         }

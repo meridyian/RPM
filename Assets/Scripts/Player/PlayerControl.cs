@@ -154,6 +154,7 @@ public class PlayerControl : NetworkBehaviour
     public void ChangeInteger(string state, int param)
     {
         characterAnimator.SetInteger(state, param);
+
     }
     
 

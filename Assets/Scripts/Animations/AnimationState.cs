@@ -18,7 +18,7 @@ public class AnimationState : PlayerBaseState
         if ((verticalInput != 0 || horizontalInput != 0))
         {
             playerStateManager.ChangeState(playerControl.movement);
-            playerControl.SetAnimationBool(playerControl.dancetalkParam, false);
+            playerControl._networkedMechanimAnim.Animator.SetBool(playerControl.dancetalkParam, false);
             
         }
         
