@@ -75,6 +75,7 @@ public class Movement : PlayerBaseState
         {
             _jumpPressed = true;
             Debug.Log("jump pressed");
+            playerControl._networkedMechanimAnim.SetTrigger("jump");
         }
 
         _jumpPressed = false;
@@ -105,12 +106,7 @@ public class Movement : PlayerBaseState
             playerStateManager.ChangeState(playerControl.sit);
         }
 
-        if (_jumpPressed)
-        {
-            playerControl.SetAnimationBool(playerControl.jumpParam, true);
-
-            
-        }
+     
         
     }
     public override void Exit()

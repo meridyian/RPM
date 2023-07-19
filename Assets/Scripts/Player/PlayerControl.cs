@@ -44,7 +44,7 @@ public class PlayerControl : NetworkBehaviour
     [Networked] public bool IsSitting { get; set; }
     [Networked] public bool IsTyping { get; set; }
 
-    
+    public NetworkMecanimAnimator _networkedMechanimAnim;
 
     //check authorithy
     public string X;

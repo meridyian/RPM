@@ -1319,6 +1319,7 @@ MonoBehaviour:
   danceortalkparam: 0
   dancetalkParam: 1667232104
   movementParam: -533705588
+  jumpParam: -1481439722
   characterAnimator: {fileID: 7085869693156313773}
   localCamera: {fileID: 4130356568288331437}
   charController: {fileID: 4228363932064979448}
@@ -1326,6 +1327,7 @@ MonoBehaviour:
   chairTransform: {fileID: 0}
   _IsSitting: 0
   _IsTyping: 0
+  _networkedMechanimAnim: {fileID: 3493079697479546314}
   X: 
 --- !u!114 &3493079697479546314
 MonoBehaviour:
@@ -1356,7 +1358,7 @@ MonoBehaviour:
     _inverse: 0
     _hash: -814817977
   StateHashes: 000000008a18fce4b9abd9d3263db1ee058db248c6459eaee5f59d0828a981077af3fe2e8aa448b810a3efc32e463d61dd0a275154e27f29857f08de16661556fcdf9172
-  TriggerHashes: 000000008c4c30e0
+  TriggerHashes: 000000008c4c30e01606b3a7
 --- !u!114 &4016050435097948253
 MonoBehaviour:
   m_ObjectHideFlags: 0
