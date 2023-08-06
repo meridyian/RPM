@@ -21,34 +21,38 @@ public class UsernameSetter : MonoBehaviour
     [SerializeField] private string _gameSceneName = null;
     
     private NetworkRunner _runnerInstance;
-    //public GameObject joinButton;
+    public GameObject joinButton;
 
-    private PlayerControls playerControls;
 
-    public void OnEnable()
+
+    public void Start()
     {
-        playerControls = new PlayerControls();
-        playerControls.UI.Enable();
-        playerControls.UI.Submit.performed += StartSharedSession;
+        ListenJoinButton();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.Return))
+        {
+            StartSharedSession();
+        }
+    }
+
+    public void ListenJoinButton()
+    {
+        joinButton.GetComponent<Button>().onClick.AddListener(() => StartSharedSession());
     }
     
-    
 
-    public void OnDisable()
-    {
-        playerControls.UI.Disable();
-        playerControls.UI.Submit.performed -= StartSharedSession;
-    }
-    
-
-    public void StartSharedSession(InputAction.CallbackContext context)
+    public void StartSharedSession()
     {
         SetPlayerData();
         StartGame(GameMode.Shared, _gameSceneName);
+
     }
     
     
-    private void SetPlayerData()
+    public void SetPlayerData()
     {
         var playerData = FindObjectOfType<PlayerData>();
         if (playerData == null)
@@ -85,6 +89,7 @@ public class UsernameSetter : MonoBehaviour
         await _runnerInstance.StartGame(startGameArgs);
         _runnerInstance.SetActiveScene(sceneName);
     }
-    
 
+
+    
 }
