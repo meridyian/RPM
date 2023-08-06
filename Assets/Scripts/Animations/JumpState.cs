@@ -7,7 +7,6 @@ using UnityEngine;
 public class JumpState : PlayerBaseState
 {
     
-
     public JumpState(PlayerControl playerControl, PlayerStateManager playerStateManager) : base(playerControl, playerStateManager)
     {
     }

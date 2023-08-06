@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class UsernameSetter : MonoBehaviour
 {
@@ -17,29 +21,27 @@ public class UsernameSetter : MonoBehaviour
     [SerializeField] private string _gameSceneName = null;
     
     private NetworkRunner _runnerInstance;
-    public GameObject joinButton;
+    //public GameObject joinButton;
 
+    private PlayerControls playerControls;
 
-    public void Start()
+    public void OnEnable()
     {
-        JoinButtonTracker();
+        playerControls = new PlayerControls();
+        playerControls.UI.Enable();
+        playerControls.UI.Submit.performed += StartSharedSession;
     }
+    
+    
 
-    public void Update()
+    public void OnDisable()
     {
-        if (Input.GetKey(KeyCode.Return))
-        {
-            StartSharedSession();
-        }
+        playerControls.UI.Disable();
+        playerControls.UI.Submit.performed -= StartSharedSession;
     }
+    
 
-    private void JoinButtonTracker()
-    {
-
-        joinButton.GetComponent<Button>().onClick.AddListener(StartSharedSession);
-    }
-
-    public void StartSharedSession()
+    public void StartSharedSession(InputAction.CallbackContext context)
     {
         SetPlayerData();
         StartGame(GameMode.Shared, _gameSceneName);
